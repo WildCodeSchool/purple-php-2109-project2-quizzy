@@ -4,7 +4,7 @@
 	<input type="submit" value="{{ answers[i].title }}" name="{{ answers[i].question_id }}" id="{{ answers[i].id }}" class="{{ (answers[i].is_correct) ? 'good-answer' : 'wrong-answer' }}">
 	{% endfor %}
 	<!-- <input type="submit" value="question suivante" class=""> -->
-    <br><br><a href="/">Question suivante</a>
+    <br><br><a href="/" id="redirection">Question suivante (45)</a> <button type="button" id="pause-timer">Mettre en pause le timer</button>
 </form>
 
 
