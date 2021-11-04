@@ -6,7 +6,6 @@
     <form method="post" action="/">
         {% for answer in answers %}
             <div>
-                <input type="checkbox" id="{{ answer.id }}" name="{{ answer.title }}">
                 <label for="{{ answer.id }}">{{ answer.title }}</label>
             </div>
         {% endfor %}
