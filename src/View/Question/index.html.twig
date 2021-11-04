@@ -1,19 +1,14 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    {# <h1>{{ question['title']}}</h1> #}
-    <h1>Question 1</h1>
+    <h1>{{ question['title']}}</h1>
     <img src="assets/images/questions/question-default.jpg" alt="question marks">
-    <form method="post" action="">
-        <div>
-            <input type="checkbox" id="answer1" name="answer1">
-            <label for="answer1">answer1</label>
-            <input type="checkbox" id="answer2" name="answer2">
-            <label for="answer2">answer2</label>
-            <input type="checkbox" id="answer3" name="answer">
-            <label for="answer3">answer3</label>
-            <input type="checkbox" id="answer4" name="answer4">
-            <label for="answer4">answer4</label>
-        </div>
+    <form method="post" action="/">
+        {% for answer in answers %}
+            <div>
+                <input type="checkbox" id="{{ answer.id }}" name="{{ answer.title }}">
+                <label for="{{ answer.id }}">{{ answer.title }}</label>
+            </div>
+        {% endfor %}
     </form>
 {% endblock %}
