@@ -2,6 +2,64 @@
 
 {% block content %}
 
-    test
+    <form action="send-question" method="post">
 
+        <div id="question-block">
+            <label  for="question">Votre question :</label>
+            <textarea id="question" name="question" required></textarea>
+        </div>
+
+        <div id="answers-block">
+            <div id="answer-1-block" class="answer-block">
+                <label  for="answer-1">Réponse 1 :</label>
+                <input  type="text"  id="answer-1"  name="answer_1" required>
+                <input type="checkbox" id="answer-1-checkbox" name="answer_1_correct">
+            </div>
+
+            <div id="answer-2-block" class="answer-block">
+                <label  for="answer-2">Réponse 2 :</label>
+                <input  type="text"  id="answer-2"  name="answer_2" required>
+                <input type="checkbox" id="answer-2-checkbox" name="answer_2_correct">
+            </div>
+
+            <div id="answer-3-block" class="answer-block">
+                <label  for="answer-3">Réponse 3 :</label>
+                <input  type="text"  id="answer-3"  name="answer_3">
+                <input type="checkbox" id="answer-3-checkbox" name="answer_3_correct">
+            </div>
+
+            <div id="answer-4-block" class="answer-block">
+                <label  for="answer-4">Réponse 4 :</label>
+                <input  type="text"  id="answer-4"  name="answer_4">
+                <input type="checkbox" id="answer-4-checkbox" name="answer_4_correct">
+            </div>
+
+        </div>
+    </form>
+    <button id="add-answer">Ajouter une réponse</button>
+    
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        /* Script that makes the button add another answer div when clicked.
+         The first time we click on it, we add the div 5, then 6 etc. */
+
+        /* The event listener doesn't work even if empty and I'm not sure why, feel free to correct it.*/
+        let numberofAnswers = 5; 
+        
+        let buttonAddAnswer = document.querySelector("#add-answer");
+        buttonAddAnswer.addEventListener('onclick', function(){
+            let node = document.createElement("DIV");
+            node.classList.add("answer-block");
+            node.id = `answer-${numberofAnswers}-block`
+            node.innerHTML = `<label  for="answer-${numberofAnswers}">Réponse ${numberofAnswers} :</label>
+            <input  type="text"  id="answer-${numberofAnswers}"  name="answer_${numberofAnswers}">
+            <input type="checkbox" id="answer-${numberofAnswers}-checkbox" name="answer_${numberofAnswers}_correct">`;
+            node.appendChild(textnode);
+            document.getElementById("answers-block").appendChild(node);
+            numberofAnswers += 1;
+        }, false);
+        
+    </script>
 {% endblock %}
