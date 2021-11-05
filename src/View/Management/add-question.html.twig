@@ -45,21 +45,21 @@
         /* Script that makes the button add another answer div when clicked.
          The first time we click on it, we add the div 5, then 6 etc. */
 
-        /* The event listener doesn't work even if empty and I'm not sure why, feel free to correct it.*/
         let numberofAnswers = 5; 
-        
         let buttonAddAnswer = document.querySelector("#add-answer");
-        buttonAddAnswer.addEventListener('onclick', function(){
+
+        buttonAddAnswer.addEventListener('click', function(){
             let node = document.createElement("DIV");
             node.classList.add("answer-block");
             node.id = `answer-${numberofAnswers}-block`
+            
             node.innerHTML = `<label  for="answer-${numberofAnswers}">Réponse ${numberofAnswers} :</label>
             <input  type="text"  id="answer-${numberofAnswers}"  name="answer_${numberofAnswers}">
             <input type="checkbox" id="answer-${numberofAnswers}-checkbox" name="answer_${numberofAnswers}_correct">`;
-            node.appendChild(textnode);
+
             document.getElementById("answers-block").appendChild(node);
             numberofAnswers += 1;
-        }, false);
+        });
         
     </script>
 {% endblock %}
