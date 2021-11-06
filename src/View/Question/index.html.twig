@@ -1,11 +1,16 @@
 {% extends 'layout.html.twig' %}
 
+{% block stylesheet %}
+<link rel="stylesheet" href="/assets/css/form-question.css">
+{% endblock %}
+
 {% block content %}
     <h1>{{ question['title']}}</h1>
-    <img src="assets/images/questions/question-default.jpg" alt="question marks">
+    <div class="img-question"><img src="assets/images/questions/question-default.jpg" alt="question marks"></div>
     <form method="post" action="/">
         {% for answer in answers %}
             <div>
+                <input type="checkbox" id="{{ answer.id }}" name="{{ answer.title }}">
                 <label for="{{ answer.id }}">{{ answer.title }}</label>
             </div>
         {% endfor %}
