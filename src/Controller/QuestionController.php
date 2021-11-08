@@ -11,7 +11,6 @@ class QuestionController extends AbstractController
     public function show(): string
     {
         //Function to send one question and its answers to the view Question/index
-        session_start();
         $questionManager = new QuestionManager();
         $question = $questionManager->selectRandomQuestion();
         $idQuestion = $question['id']; // fetch the id of the question selected
@@ -29,7 +28,6 @@ class QuestionController extends AbstractController
 
     public function showResults()
     {
-        session_start();
         if (isset($_SESSION['question']) && isset($_SESSION['answers'])) {
             $question = $_SESSION['question'];
             $answers = $_SESSION['answers'];
@@ -39,7 +37,7 @@ class QuestionController extends AbstractController
             ]);
         } else {
             header('Location:/');
-            //maybe add a new page error to explain that the website needs cookies to function
+            //maybe add a new page error to explain that the website needs cookies to function ?
         }
     }
 }
