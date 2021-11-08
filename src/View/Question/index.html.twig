@@ -5,14 +5,18 @@
 {% endblock %}
 
 {% block content %}
-    <h1>{{ question['title']}}</h1>
-    <div class="img-question"><img src="assets/images/questions/question-default.jpg" alt="question marks"></div>
-    <form method="post" action="/">
-        {% for answer in answers %}
-            <div>
-                <input type="checkbox" id="{{ answer.id }}" name="{{ answer.title }}">
-                <label for="{{ answer.id }}">{{ answer.title }}</label>
-            </div>
-        {% endfor %}
-    </form>
+    <section class="question-section">
+        <h1 class="question-title">{{ question['title']}}</h1>
+        <section class="img-and-question">
+            <div class="img-question"><img src="assets/images/questions/question-default.jpg" alt="question marks"></div>
+            <form class="question-home" method="post" action="/">
+                {% for answer in answers %}
+                    <div class="input-group">
+                        <input type="checkbox" id="{{ answer.id }}" name="{{ answer.title }}">
+                        <label for="{{ answer.id }}">{{ answer.title }}</label>
+                    </div>
+                {% endfor %}
+            </form>
+        </section>
+    </section>
 {% endblock %}

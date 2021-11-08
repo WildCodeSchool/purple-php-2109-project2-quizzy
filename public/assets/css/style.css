@@ -4,6 +4,8 @@
     box-sizing: border-box;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+
 /* VARIABLES */
 
 :root {
@@ -13,11 +15,25 @@
     --button-bg-color: #1D3E80;
 }
 
+/* HEADER | MOBILE PART */
+
 body {
     height: 100vh;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
 }
 
-/* HEADER | MOBILE PART */
+h1 {
+    font-size: 22px;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+h3 {
+    font-size: 18px;
+}
 
 .wide-screen-header, .wide-screen-footer {
     display: none;
@@ -56,6 +72,19 @@ body {
     .mobile-header .logo {
         padding-top: 2.4em;
     }
+
+    h1 {
+        font-size: 24px;
+    }
+    
+    h2 {
+        font-size: 22px;
+    }
+    
+    h3 {
+        font-size: 20px;
+    }
+
 }
 
 @media screen and (min-width: 800px) {
@@ -67,6 +96,22 @@ body {
     .mobile-header .logo img {
         width: 160px;
         height: 160px;
+    }
+
+    body {
+        font-size: 18px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+    
+    h2 {
+        font-size: 25px;
+    }
+    
+    h3 {
+        font-size: 22px;
     }
 }
 
@@ -87,6 +132,17 @@ body {
         height: inherit;
     }
 
+    h1 {
+        font-size: 30px;
+    }
+    
+    h2 {
+        font-size: 27px;
+    }
+    
+    h3 {
+        font-size: 24px;
+    }
 }
 
 /* HEADER | WIDE SCREEN (DESKTOP) PART */
@@ -101,9 +157,12 @@ body {
 
 /* MAIN | MOBILE PART */
 
-main {
+.main-footer-column {
     background-color: var(--main-bg-color);
-    width: 100%;
+}
+
+main {
+    padding: 3em 1em 1em 1em;
 }
 
 /* MAIN | LARGER MOBILE / TABLET PART */
@@ -143,50 +202,40 @@ main {
 /* FOOTER | MOBILE PART */
 
 .mobile-footer {
-    height: 6em;
     background-color: var(--header-footer-color);
     display: flex;
     flex-wrap: wrap;
     position: fixed;
     bottom: 0;
     width: 100%;
+    z-index: 10;
+    height: 4em;
 }
 
-.mobile-footer nav, .mobile-footer p {
+.mobile-footer nav {
     width: 100%;
-    text-align: center;
+    margin: 0 auto;
+}
+
+.mobile-footer i {
+    font-size: 35px;
+    color: #fff;
+}
+
+.mobile-footer i:hover {
+    font-size: 40px;
 }
 
 .mobile-footer nav ul {
     display: flex;
     justify-content: space-evenly;
+    padding: .8em 0 1em 0;
 }
 
 .mobile-footer nav ul li {
     width: 5em;
     list-style: none;
-    padding-top: .7em;
-    padding-bottom: .3em;
-}
-
-.mobile-footer nav ul svg {
-    width: 2.5em;
-    height: 2.5em;
-    color: #fff;
-    stroke-linecap:  round;
-    stroke: #000;
-    stroke-width: 15;
-}
-
-.mobile-footer nav ul svg:hover {
-    stroke-linecap:  round;
-    stroke: #000;
-    stroke-width: 25;
-}
-
-.mobile-footer p, .mobile-footer p a {
-    color: #fff;
-    text-decoration: none;
+    text-align: center;
 }
 
 /* FOOTER | LARGER MOBILE / TABLET PART */
@@ -213,11 +262,4 @@ main {
 /* FOOTER | WIDE SCREEN (DESKTOP) PART */
 
 @media screen and (min-width: 1280px) {
-}
-
-
-
-img {
-    width: 100px;
-    height: 100px;
 }
