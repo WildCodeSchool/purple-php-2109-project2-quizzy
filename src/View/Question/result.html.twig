@@ -5,8 +5,7 @@
     <img src="assets/images/questions/question-default.jpg" alt="question marks">
         {% for answer in answers %}
             <div>
-                <input type="checkbox" id="{{ answer.id }}" name="{{ answer.title }}" disabled class="{{ (answers.is_correct) ? 'good-answer' : 'wrong-answer' }}"
-answer.is_correct>
+                <input type="checkbox" id="{{ answer.id }}" name="{{ answer.title }}" disabled class="{{ (answer.is_correct) ? 'good-answer' : 'wrong-answer' }}">
                 <label for="{{ answer.id }}">{{ answer.title }}</label>
             </div>
         {% endfor %}
