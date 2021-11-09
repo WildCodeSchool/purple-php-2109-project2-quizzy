@@ -2,38 +2,29 @@
 
 {% block content %}
 
-    <form action="send-question" method="post">
+    <div id="error">
+        {{ error }}
+    </div>
+    <form action="add-question" method="post">
 
         <div id="question-block">
             <label  for="question">Votre question :</label>
-            <textarea id="question" name="question" required></textarea>
+            <textarea id="question" name="question" required>{{question}}
+            </textarea>
         </div>
 
         <div id="answers-block">
-            <div id="answer-1-block" class="answer-block">
-                <label  for="answer-1">Réponse 1 :</label>
-                <input  type="text"  id="answer-1"  name="answer_1" required>
-                <input type="checkbox" id="answer-1-checkbox" name="answer_1_correct">
-            </div>
+            {% for answer in answerArray %}
+                <div id="answer-{{loop.index}}-block" class="answer-block">
+                    <label  for="answer-{{loop.index}}">Réponse {{loop.index}} :</label>
+                    <input  type="text"  id="answer-{{loop.index}}"  name="answer_{{loop.index}}" value="{{answer.answer}}" required>
+                    <input type="checkbox" id="answer-{{loop.index}}-checkbox" name="answer_{{loop.index}}_correct">
+                </div>
+            {% endfor %}
+        </div>
 
-            <div id="answer-2-block" class="answer-block">
-                <label  for="answer-2">Réponse 2 :</label>
-                <input  type="text"  id="answer-2"  name="answer_2" required>
-                <input type="checkbox" id="answer-2-checkbox" name="answer_2_correct">
-            </div>
-
-            <div id="answer-3-block" class="answer-block">
-                <label  for="answer-3">Réponse 3 :</label>
-                <input  type="text"  id="answer-3"  name="answer_3">
-                <input type="checkbox" id="answer-3-checkbox" name="answer_3_correct">
-            </div>
-
-            <div id="answer-4-block" class="answer-block">
-                <label  for="answer-4">Réponse 4 :</label>
-                <input  type="text"  id="answer-4"  name="answer_4">
-                <input type="checkbox" id="answer-4-checkbox" name="answer_4_correct">
-            </div>
-
+        <div id="send-answer">
+            <input type="submit" value="Envoyer la question">
         </div>
     </form>
     <button id="add-answer">Ajouter une réponse</button>
@@ -43,9 +34,9 @@
 {% block javascript %}
     <script>
         /* Script that makes the button add another answer div when clicked.
-         The first time we click on it, we add the div 5, then 6 etc. */
+         The first time we click on it, we add the div 3, then 4 etc. */
 
-        let numberofAnswers = 5; 
+        let numberofAnswers = {{ answerArray|length + 1 }}; 
         let buttonAddAnswer = document.querySelector("#add-answer");
 
         buttonAddAnswer.addEventListener('click', function(){
