@@ -2,7 +2,7 @@
 
 {% block content %}
     <h1>{{ question['title']}}</h1>
-    <img src="assets/images/questions/question-default.jpg" alt="question marks">
+    <img src="assets/images/questions/question-image-{{ question['id'] }}.jpg" " alt="question marks">
         {% for answer in answers %}
             <div>
                 <input type="checkbox" id="{{ answer.id }}" name="{{ answer.title }}" disabled class="{{ (answer.is_correct) ? 'good-answer' : 'wrong-answer' }}">
