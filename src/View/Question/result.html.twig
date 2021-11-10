@@ -27,7 +27,7 @@
                 timer -= 1;
             }
             document.getElementById("redirection").innerHTML = "Question suivante (" + timer + ")";
-            if (timer <= 0) {
+            if (timer <= 0 && continueTimer === true) {
                 continueTimer = false;
                 location.replace("/");
             }
