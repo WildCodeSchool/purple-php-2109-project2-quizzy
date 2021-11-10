@@ -38,7 +38,14 @@ class ManagementController extends AbstractController
             }
 
             if ($minOneCorrectAnswer == false) {
-                $errors = "Au moins une réponse doit être marquée comme correcte.";
+                $errors[] = "Au moins une réponse doit être marquée comme correcte.";
+            }
+
+            if (empty($errors)) {
+                // Question is added here
+            }
+
+            else {
                 return $this->twig->render('Management/add-question.html.twig', [
                     'errors' => $errors,
                     'question' => $question,
@@ -48,6 +55,7 @@ class ManagementController extends AbstractController
         }
 
         return $this->twig->render('Management/add-question.html.twig', [
+            'errors' => [],
             'question' => "",
             'answerArray' => [["", false],["", false]],
             ]);

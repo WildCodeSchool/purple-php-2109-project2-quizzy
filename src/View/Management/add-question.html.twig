@@ -3,14 +3,15 @@
 {% block content %}
 
     <div id="error">
-        {{ error }}
+        {% for error in errors %}
+            <li>{{ error }}</li>
+        {% endfor %}
     </div>
     <form action="add-question" method="post">
 
         <div id="question-block">
             <label  for="question">Votre question :</label>
-            <textarea id="question" name="question" required>{{question}}
-            </textarea>
+            <textarea id="question" name="question" required>{{question}}</textarea>
         </div>
 
         <div id="answers-block">
