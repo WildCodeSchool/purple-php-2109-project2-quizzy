@@ -1,9 +1,0 @@
-{# TODO : manage errors display #}
-
-<form method="post" action="answers">
-	<input type="hidden" value="{{ question.id }}" name="questionId">
-	<input type="hidden" value="{{ answersOrder }}" name="answersOrder">
-	{% for i in 0..(answers|length)-1 %}
-	<input type="submit" value="{{ answers[i].title }}" name="{{ answers[i].question_id }}" id="{{ answers[i].id }}" class="question-answers">
-	{% endfor %}
-</form>
