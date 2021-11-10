@@ -15,6 +15,7 @@ class ManagementController extends AbstractController
         $answerArray = [];
         $numberCorrectAnswers = 0;
         $numberOfAnswers = 1;
+        $timeLimit = 45;
 
         if (!empty($_POST)) { // If a question is being sent, it has to be checked then added.
             if (isset($_POST["question"])) {
@@ -40,9 +41,11 @@ class ManagementController extends AbstractController
 
             $errors = $this->verifyNumberOfRightAnswer($numberCorrectAnswers, $numberOfAnswers, $errors);
 
+            $timeLimit = $this->addTimeLimit();
+
             if (empty($errors)) {
                 $questionManager = new QuestionManager();
-                $questionId = $questionManager->addQuestion($question);
+                $questionId = $questionManager->addQuestion($question, $timeLimit);
                 $answersManager = new AnswersManager();
                 $answersManager->addAnswers($answerArray, $questionId);
             } else {
@@ -50,6 +53,7 @@ class ManagementController extends AbstractController
                     'errors' => $errors,
                     'question' => $question,
                     'answerArray' => $answerArray,
+                    'timeLimit' => $timeLimit,
                 ]);
             }
         }
@@ -58,10 +62,11 @@ class ManagementController extends AbstractController
             'errors' => [],
             'question' => "",
             'answerArray' => [["", false],["", false]],
+            'timeLimit' => 45,
             ]);
     }
 
-    public function verifyNumberOfRightAnswer($numberCorrectAnswers, $numberOfAnswers, $errors)
+    public function verifyNumberOfRightAnswer(int $numberCorrectAnswers, int $numberOfAnswers, array $errors)
     {
         if ($numberCorrectAnswers === 0) {
             $errors[] = "Au moins une réponse doit être marquée comme correcte.";
@@ -70,5 +75,14 @@ class ManagementController extends AbstractController
         }
 
         return $errors;
+    }
+
+    public function addTimeLimit()
+    {
+        if (isset($_POST["time-limit"]) || gettype($_POST["time-limit"] != "integer" || $_POST["time-limit"] < 0)) {
+            return 45;
+        } else {
+            return $_POST["time-limit"];
+        }
     }
 }

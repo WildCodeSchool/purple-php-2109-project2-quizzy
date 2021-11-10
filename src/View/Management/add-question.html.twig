@@ -14,6 +14,11 @@
             <textarea id="question" name="question" required>{{question}}</textarea>
         </div>
 
+        <div id="time-limit-block">
+            <label  for="time-limit">Temps limite :</label>
+            <input  type="number"  id="time-limit"  name="time-limit" value="{{timeLimit}}" required>
+        </div>
+
         <div id="answers-block">
             {% for answer in answerArray %}
                 <div id="answer-{{loop.index}}-block" class="answer-block">
