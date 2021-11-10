@@ -18,7 +18,6 @@
 /* HEADER | MOBILE PART */
 
 body {
-    height: 100vh;
     font-size: 16px;
     font-family: 'Roboto', sans-serif;
 }
@@ -103,15 +102,15 @@ h3 {
     }
 
     h1 {
-        font-size: 28px;
+        font-size: 26px;
     }
     
     h2 {
-        font-size: 25px;
+        font-size: 23px;
     }
     
     h3 {
-        font-size: 22px;
+        font-size: 20px;
     }
 }
 
@@ -129,33 +128,76 @@ h3 {
 
     .wide-screen-header {
         background-color: var(--header-footer-color);
-        height: inherit;
+        width: 15%;
+        margin-left: 2em;
+        z-index: 5;
     }
 
     h1 {
-        font-size: 30px;
+        font-size: 28px;
     }
     
     h2 {
-        font-size: 27px;
+        font-size: 25px;
     }
     
     h3 {
-        font-size: 24px;
+        font-size: 22px;
+    }
+
+    .wide-screen-header .logo {
+        margin-left: -5.8em;
+        margin-top: 20%;
+    }
+
+    .wide-screen-header .logo img {
+        width: 175px;
+    }
+
+    .wide-screen-header nav {
+        margin-top: 4em;
+    }
+
+    .wide-screen-header nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+
+    .wide-screen-header nav ul li {
+        list-style: none;
+        text-align: center;
+        width: 100%;
+        padding: .5em 0;
+        margin: 1em auto;
+        height: 2em;
+    }
+
+    .wide-screen-header i {
+        font-size: 35px;
+        color: #fff;
+    }
+    
+    .wide-screen-header i:hover {
+        font-size: 40px;
     }
 }
 
 /* HEADER | WIDE SCREEN (DESKTOP) PART */
 
 @media screen and (min-width: 1280px) {
-    
+    .wide-screen-header .logo {
+        margin-left: 2.9em;
+    }
+
+    .wide-screen-header {
+        width: 120px;
+        margin-right: 2em;
+        margin-left: 0;
+    }
 }
 
-
-
-
-
-/* MAIN | MOBILE PART */
+/* MAIN */
 
 .main-footer-column {
     background-color: var(--main-bg-color);
@@ -164,40 +206,6 @@ h3 {
 main {
     padding: 3em 1em 1em 1em;
 }
-
-/* MAIN | LARGER MOBILE / TABLET PART */
-
-@media screen and (min-width: 500px) {
-}
-
-@media screen and (min-width: 800px) {
-}
-
-/* MAIN | LARGER TABLET PART */
-
-@media screen and (min-width: 1024px) {
-    body {
-        display: flex;
-        flex-direction: row-reverse;
-    }
-
-    .main-footer-column {
-        width: 100%;
-    }
-}
-
-/* MAIN | WIDE SCREEN (DESKTOP) PART */
-
-@media screen and (min-width: 1280px) {
-    body {
-        display: flex;
-        flex-direction: row;
-    }
-}
-
-
-
-
 
 /* FOOTER | MOBILE PART */
 
@@ -240,10 +248,6 @@ main {
 
 /* FOOTER | LARGER MOBILE / TABLET PART */
 
-@media screen and (min-width: 500px) {
-    
-}
-
 @media screen and (min-width: 800px) {
     .mobile-footer nav {
         width: 60%;
@@ -257,9 +261,4 @@ main {
     .mobile-footer {
         display: none;
     }
-}
-
-/* FOOTER | WIDE SCREEN (DESKTOP) PART */
-
-@media screen and (min-width: 1280px) {
 }

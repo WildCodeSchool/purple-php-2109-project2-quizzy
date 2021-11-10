@@ -31,12 +31,18 @@
             </a>
         </div>
         <nav>
-            <ul>
-                <li class="btn-home"><a href="/"><img src="assets/images/home.png" alt="logo-home"></a></li>
-                <li class="btn-add-question"><a href="/add-question"><img src="assets/images/add-question.png"
-                            alt="logo-add-a-question"></a></li>
-            </ul>
-        </nav>
+                <ul>
+                    <li>
+                        <a href="/"><i class="fas fa-home"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-plus-circle"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-info-circle"></i></a>
+                    </li>
+                </ul>
+            </nav>
     </header>
     <section class="main-footer-column">
         <main>
@@ -57,9 +63,6 @@
                     </li>
                 </ul>
             </nav>
-        </footer>
-        <footer class="wide-screen-footer">
-            <p>Quizzy - <a href="#">Mentions légales</a></p>
         </footer>
     </section>
     {% block javascript %}{% endblock %}
