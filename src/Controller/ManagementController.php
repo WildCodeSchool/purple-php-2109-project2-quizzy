@@ -9,7 +9,7 @@ class ManagementController extends AbstractController
         $errors = [];
         $question = "";
         $answerArray = [];
-        $minOneCorrectAnswer = false;
+        $numberCorrectAnswers = 0;
         $numberOfAnswers = 1;
 
         if (!empty($_POST)) { // If a question is being sent, it has to be checked then added.
@@ -18,34 +18,27 @@ class ManagementController extends AbstractController
             } else {
                 $errors[] = "Il faut remplir le champ question.";
             }
-            while (true) { // This pulls the answers from the form and add them to $answerArray
-                if (isset($_POST["answer_" . strval($numberOfAnswers)])) {
-                    $answer = $_POST["answer_" . strval($numberOfAnswers) ];
-                    $isCorrect = isset($_POST["answer_" . strval($numberOfAnswers) . "_correct"]);
-                    $answerArray[] = ["answer" => $answer, "isCorrect" => $isCorrect];
-                    $numberOfAnswers++;
-                } else {
-                    break;
-                }
+            // This pulls the answers from the form and add them to $answerArray
+            while (isset($_POST["answer_" . strval($numberOfAnswers)])) {
+                $answer = $_POST["answer_" . strval($numberOfAnswers) ];
+                $isCorrect = isset($_POST["answer_" . strval($numberOfAnswers) . "_correct"]);
+                $answerArray[] = ["answer" => $answer, "isCorrect" => $isCorrect];
+                $numberOfAnswers++;
             }
             foreach ($answerArray as $answer) { // This checks if answer forms are filled properly.
                 if (empty($answer["answer"])) {
                     $errors[] = "Tout les champs réponses doivent être remplis.";
                 }
                 if ($answer["isCorrect"]) { // This checks if at least one answer is correct.
-                    $minOneCorrectAnswer = true;
+                    $numberCorrectAnswers++ ;
                 }
             }
 
-            if ($minOneCorrectAnswer == false) {
-                $errors[] = "Au moins une réponse doit être marquée comme correcte.";
-            }
+            $errors = $this->verifyNumberOfRightAnswer($numberCorrectAnswers, $numberOfAnswers, $errors);
 
             if (empty($errors)) {
-                // Question is added here
-            }
-
-            else {
+                // Question is added in the database here
+            } else {
                 return $this->twig->render('Management/add-question.html.twig', [
                     'errors' => $errors,
                     'question' => $question,
@@ -59,5 +52,16 @@ class ManagementController extends AbstractController
             'question' => "",
             'answerArray' => [["", false],["", false]],
             ]);
+    }
+
+    public function verifyNumberOfRightAnswer($numberCorrectAnswers, $numberOfAnswers, $errors)
+    {
+        if ($numberCorrectAnswers === 0) {
+            $errors[] = "Au moins une réponse doit être marquée comme correcte.";
+        } elseif ($numberCorrectAnswers === $numberOfAnswers - 1) {
+            $errors[] = "Au moins une réponse doit être marquée comme fausse.";
+        }
+
+        return $errors;
     }
 }
