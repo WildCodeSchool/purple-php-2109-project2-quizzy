@@ -8,11 +8,11 @@
     <section class="question-section">
         <h1 class="question-title">{{ question['title']}}</h1>
         <section class="img-and-question">
-            <div class="img-question"><img src="assets/images/questions/question-default.jpg" alt="question marks"></div>
-            <form class="question-home" method="post" action="/">
+            <div class="img-question"><img src="assets/images/questions/question-image-{{ question['id'] }}.jpg" alt="question marks"></div>
+            <form class="question-home" method="post" action="result">
                 {% for answer in answers %}
                     <div class="input-group">
-                        <input type="checkbox" id="{{ answer.id }}" name="{{ answer.title }}">
+                        <input type="checkbox" id="{{ answer.id }}" name="{{ answer.title }}" onChange="this.form.submit();">
                         <label for="{{ answer.id }}">{{ answer.title }}</label>
                     </div>
                 {% endfor %}
