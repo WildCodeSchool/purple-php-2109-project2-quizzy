@@ -2,6 +2,10 @@
 
 namespace App\Controller;
 
+use App\Model\QuestionManager;
+use App\Model\AnswersManager;
+use App\Model\ItemManager;
+
 class ManagementController extends AbstractController
 {
     public function showFormAddQuestion(): string
@@ -37,7 +41,10 @@ class ManagementController extends AbstractController
             $errors = $this->verifyNumberOfRightAnswer($numberCorrectAnswers, $numberOfAnswers, $errors);
 
             if (empty($errors)) {
-                // Question is added in the database here
+                $questionManager = new QuestionManager();
+                $questionId = $questionManager->addQuestion($question);
+                $answersManager = new AnswersManager();
+                $answersManager->addAnswers($answerArray, $questionId);
             } else {
                 return $this->twig->render('Management/add-question.html.twig', [
                     'errors' => $errors,
