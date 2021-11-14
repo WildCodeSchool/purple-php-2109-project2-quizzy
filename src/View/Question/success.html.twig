@@ -1,5 +1,5 @@
 {% extends 'layout.html.twig' %}
 {% block content %}
-    <h1>Bravo, vous avez répondu correctement à {{ score }} questions !</h1>
+    <h1>Bravo, vous avez répondu correctement à {{ score }} {% if score == 0 %} question {% else %} questions {% endif %} !</h1>
     <a href="/">On recommence ?</a>
 {% endblock %}
