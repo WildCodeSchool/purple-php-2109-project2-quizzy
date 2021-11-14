@@ -32,7 +32,7 @@ class ManagementController extends AbstractController
             }
             foreach ($answerArray as $answer) { // This checks if answer forms are filled properly.
                 if (empty($answer["answer"])) {
-                    $errors[] = "Tout les champs réponses doivent être remplis.";
+                    $errors[] = "Tous les champs réponses doivent être remplis.";
                 }
                 if ($answer["isCorrect"]) { // This checks if at least one answer is correct.
                     $numberCorrectAnswers++ ;
