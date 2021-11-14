@@ -8,7 +8,7 @@ class QuestionManager extends AbstractManager
 
     public function selectRandomQuestion(string $askedQuestionsList = null): array
     {
-        if ($askedQuestionsList === null) {
+        if (!isset($askedQuestionsList) || $askedQuestionsList == null) {
             $query = ("SELECT * FROM " . static::TABLE . " ORDER BY rand() LIMIT 1");
         } else {
             $query = ("SELECT * FROM " . static::TABLE . " WHERE id NOT IN (" . $askedQuestionsList .

@@ -10,4 +10,5 @@ return [
     '' => ['QuestionController', 'show',],
     'add-question' => ['ManagementController', 'showFormAddQuestion',],
     'result' => ['QuestionController', 'showResults'],
+    'success' => ['SuccessController', 'success']
 ];

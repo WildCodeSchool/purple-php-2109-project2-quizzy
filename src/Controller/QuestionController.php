@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Model\QuestionManager;
 use App\Model\AnswersManager;
-use App\Model\ItemManager;
 
 class QuestionController extends AbstractController
 {
@@ -15,9 +14,8 @@ class QuestionController extends AbstractController
         if (!empty($_SESSION["questionsWellAnswered"])) {
             $alreadyAskedQuestion = $_SESSION["questionsWellAnswered"];
             $count = $questionManager->countAllQuestions();
-            if ($count['total'] === count($alreadyAskedQuestion)) {
-                self::unsetUserSession();
-                header("Location:/");
+            if ($count['total'] == count($alreadyAskedQuestion)) {
+                header("Location:/success");
             }
                 // Transform the array into a string to send it as a parameter for the SQL request
             $askedQuestionsList = implode(",", $alreadyAskedQuestion);
@@ -88,11 +86,5 @@ class QuestionController extends AbstractController
         } else {
             header('Location:/');
         }
-    }
-
-    public function unsetUserSession(): void
-    {
-        unset($_SESSION['questionsWellAnswered']);
-        unset($_SESSION['score']);
     }
 }
