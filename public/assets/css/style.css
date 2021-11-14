@@ -4,7 +4,23 @@
     box-sizing: border-box;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+@font-face {
+    font-family: 'Roboto';
+    src: url(../fonts/Roboto/Roboto-Regular.ttf);
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url(../fonts/Roboto/Roboto-Italic.ttf);
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url(../fonts/Roboto/Roboto-Bold.ttf);
+    font-weight: bold;
+}
 
 /* VARIABLES */
 
@@ -203,7 +219,7 @@ h3 {
     background-color: var(--main-bg-color);
 }
 
-main {
+.main {
     padding: 3em 1em 1em 1em;
 }
 
