@@ -7,44 +7,51 @@ use App\Model\AnswersManager;
 
 class QuestionController extends AbstractController
 {
-    public function show(): string
+    public function show(): mixed
     {
-        // Function to send one question and its answers to the view Question/index
         $questionManager = new QuestionManager();
-        if (!empty($_SESSION["questionsWellAnswered"])) {
-            $alreadyAskedQuestion = $_SESSION["questionsWellAnswered"];
-            $count = $questionManager->countAllQuestions();
-            if ($count['total'] == count($alreadyAskedQuestion)) {
-                header("Location:/success");
-            }
-                // Transform the array into a string to send it as a parameter for the SQL request
-            $askedQuestionsList = implode(",", $alreadyAskedQuestion);
-            $question = $questionManager->selectRandomQuestion($askedQuestionsList);
-        } else {
-            $question = $questionManager->selectRandomQuestion();
-        }
-        // Fetch the id of the question selected
-        $idQuestion = $question['id'];
-        // Fetch answers for the question id
-        $answersManager = new AnswersManager();
-        $answers = $answersManager->selectAnswersForQuestion($idQuestion);
-        shuffle($answers);
-        // Stock the variables in $_Session to fetch them in the result page
-        $_SESSION["question"] = $question;
-        $_SESSION["answers"] = $answers;
-        // check if score exists already and if not, create the index
+        $count = $questionManager->countAllQuestions();
+        $countTotal = intval($count['total']);
         if (!isset($_SESSION['score'])) {
             $_SESSION['score'] = 0;
         }
-        // check if the array of questions where answer was correct, is already creates
         if (!isset($_SESSION["questionsWellAnswered"])) {
             $_SESSION["questionsWellAnswered"] = [];
         }
-        return $this->twig->render('Question/index.html.twig', [
-            'question' => $question,
-            'answers' => $answers,
-            'session' => $_SESSION,
-        ]);
+        if (empty($_SESSION["questionsWellAnswered"])) {
+            //if it's the beginning of the session, we select a random question
+            $question = $questionManager->selectRandomQuestion();
+        } elseif (
+            (!empty($_SESSION["questionsWellAnswered"]) && (count($_SESSION["questionsWellAnswered"]) < $countTotal))
+        ) {
+            // Transform the array into a string to send it as a parameter for the SQL request
+            $askedQuestionsList = implode(",", $_SESSION["questionsWellAnswered"]);
+            $question = $questionManager->selectRandomQuestion($askedQuestionsList);
+        } elseif (
+            !empty($_SESSION["questionsWellAnswered"]) && (count($_SESSION["questionsWellAnswered"]) == $countTotal)
+        ) {
+            // if the user answered to all the questions in the database, he's redirected
+            header("Location:/success");
+        }
+        if (isset($question['id'])) {
+            // Fetch the id of the question selected
+            $idQuestion = $question['id'];
+            // Fetch answers for the question id
+            $answersManager = new AnswersManager();
+            $answers = $answersManager->selectAnswersForQuestion($idQuestion);
+            shuffle($answers);
+            // Stock the variables in $_Session to fetch them in the result page
+            $_SESSION["question"] = $question;
+            $_SESSION["answers"] = $answers;
+            var_dump($_SESSION["questionsWellAnswered"]);
+            return $this->twig->render('Question/index.html.twig', [
+                'question' => $question,
+                'answers' => $answers,
+                'session' => $_SESSION,
+            ]);
+        } else {
+            header("HTTP/1.0 404 Not Found");
+        }
     }
 
     public function showResults()
