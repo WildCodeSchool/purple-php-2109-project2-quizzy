@@ -28,4 +28,10 @@ class QuestionManager extends AbstractManager
         $query = ("SELECT * FROM " . static::TABLE . " ORDER BY id DESC LIMIT 1");
         return $this->pdo->query($query)->fetch();
     }
+
+    public function selectNonAdmittedQuestions(): array
+    {
+        $query = ("SELECT * FROM " . static::TABLE . " WHERE is_admitted = false ORDER BY id LIMIT 5");
+        return $this->pdo->query($query)->fetchAll();
+    }
 }

@@ -2,13 +2,35 @@
 
 {% block content %}
 <p>Salut !</p>
-{# if (isset($_SESSION['pseudo'])) {
-     echo "Bonjour " . $_SESSION['pseudo'] . ', vous êtes bien connecté(e) !';
-} else {
-    header('Location: connexion.php');
-    exit;
-}
 
-?> #}
+{% for question in questions %}
+    <section class="question-section">
+        <h1 class="question-title"></h1>
+        
+        <section class="img-and-question">
+            <div class="img-question"><img src="assets/images/questions/question-default.jpg" alt="question marks"></div>
+            <form class="question-home" method="post" action="/panel">
+                <div>
+                    <h1>Titre :</h1>
+                    <input type="text" id="{{ question.id }}" name="{{ question.title}}" value="{{ question.title}}">
+                </div><br>
+                <div>
+                    <h2>Réponses :</h2>
+                
+                {% for answer in question.answers %}
+                    <div>
+                        <input type="text" id="{{ answer.id }}" name="{{ answer.title }}" value="{{ answer.title }}">
+                        <input type="checkbox" id="answer-{{loop.index}}-checkbox" name="answer_{{loop.index}}_correct" {{ (answer.is_correct) ? 'checked' : '' }}>
+                    </div>
+                {% endfor %}
+                </div>
+                <div>
+                    <input type="submit" value="Accepter la question">
+                    <input type="submit" value="Supprimer la question">
+                </div>
+            </form>
+        </section>
+    </section>
+{% endfor %}
 
 {% endblock %}

@@ -6,7 +6,7 @@ class AnswersManager extends AbstractManager
 {
     public const TABLE = 'answer';
 
-    public function selectAnswersForQuestion($id)
+    public function selectAnswersForQuestion($id): array
     {
         $statement = $this->pdo->prepare("SELECT * FROM " . static::TABLE . " WHERE id_question=:id_question");
         $statement->bindValue('id_question', $id, \PDO::PARAM_INT);

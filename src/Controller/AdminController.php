@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Model\AdminManager;
+use App\Model\QuestionManager;
 
 class AdminController extends AbstractController
 {
@@ -38,7 +39,15 @@ class AdminController extends AbstractController
             if (empty($errors)) {
                 $_SESSION['username'] = $admin['username'];
                 $_SESSION['password'] = $admin['password'];
-                return $this->twig->render('Admin/panel.html.twig');
+
+                $questionManager = new QuestionManager();
+                $adminManager = new AdminManager();
+                $questions = $questionManager->selectNonAdmittedQuestions();
+                $questions = $adminManager->createArrayNonAdmittedQuestions($questions);
+
+                return $this->twig->render('Admin/panel.html.twig', [
+                    'questions' => $questions,
+                ]);
             } else {
                 return $this->twig->render('Admin/login.html.twig', ['errors' => $errors]);
             }

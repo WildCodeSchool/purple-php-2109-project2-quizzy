@@ -2,6 +2,8 @@
 
 namespace App\Model;
 
+use App\Model\AnswersManager;
+
 class AdminManager extends AbstractManager
 {
     public const TABLE = 'user';
@@ -12,9 +14,19 @@ class AdminManager extends AbstractManager
         return $this->pdo->query($query)->fetch();
     }
 
-    public function allQuestionNotAdmitted(): array
+    public function createArrayNonAdmittedQuestions(array $questions): array
     {
-        $query = ('SELECT * FROM question WHERE is_admitted = false');
-        return $this->pdo->query($query)->fetch();
+        $answersManager = new AnswersManager();
+
+        $questionsAndAnswers = [];
+        foreach ($questions as $question) {
+            $questionArray = [
+                'title' => $question["title"],
+                'id' => $question["id"],
+                'answers' => $answersManager->selectAnswersForQuestion($question["id"])
+            ];
+            $questionsAndAnswers[] = $questionArray;
+        }
+        return $questionsAndAnswers;
     }
 }
