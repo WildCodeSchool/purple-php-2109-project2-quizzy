@@ -1,19 +1,30 @@
 {% extends 'layout.html.twig' %}
 
+{% block stylesheet %}
+<link rel="stylesheet" href="/assets/css/result.css">
+{% endblock %}
+
 {% block content %}
-
-    <h1>{{ question['title']}}</h1>
-    <img src="assets/images/questions/question-image-{{ question['id'] }}.jpg" alt="question marks">
-    {% for answer in answers %}
-        <div>
-            <input type="checkbox" id="{{ answer.id }}" name="{{ answer.title }}" disabled class="{{ (answer.is_correct) ? 'good-answer' : 'wrong-answer' }}">
-            <label for="{{ answer.id }}">{{ answer.title }}</label>
+    <section class="question-section">
+        <h1 class="question-title">{{ question['title']}}</h1>
+        <section class="img-and-question">
+            <div class="img-question">
+                <img src="assets/images/questions/question-image-{{ question['id'] }}.jpg" alt="question marks" class="image">
+            </div>
+            <div class="question-home">
+                {% for answer in answers %}
+                    <div class="input-group">
+                        <input type="checkbox" id="{{ answer.id }}" name="{{ answer.title }}" disabled class="{{ (answer.is_correct) ? 'good-answer' : 'wrong-answer' }}">
+                        <label for="{{ answer.id }}">{{ answer.title }}</label>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+        <div id="next-page-button">
+            <a href="/" id="redirection">Question suivante (45)</a> 
+            <button type="button" id="pause-timer">Stop timer</button>
         </div>
-    {% endfor %}
-    <div id="next-page-button">
-        <a href="/" id="redirection">Question suivante (45)</a> <button type="button" id="pause-timer">Mettre en pause le timer</button>
-    </div>
-
+    </section>
 {% endblock %}
 
 
