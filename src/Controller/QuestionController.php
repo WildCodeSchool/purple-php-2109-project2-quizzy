@@ -79,6 +79,7 @@ class QuestionController extends AbstractController
                 $answerId = $answerChecked[1];
             }
             if (isset($questionId) && isset($answerId)) {
+                //&& !in_array($questionId, $_SESSION["questionsWellAnswered"])
                 $answersManager = new AnswersManager();
                 //Fetch the answer and its properties
                 $chosenAnswer = $answersManager->selectAnswerFromChecked($answerId);
