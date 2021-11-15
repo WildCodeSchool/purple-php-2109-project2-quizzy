@@ -12,12 +12,15 @@ class QuestionController extends AbstractController
         $questionManager = new QuestionManager();
         $count = $questionManager->countAllQuestions();
         $countTotal = intval($count['total']);
+
+        //initialize SESSION score et questionsWellAnswered if not setted
         if (!isset($_SESSION['score'])) {
             $_SESSION['score'] = 0;
         }
         if (!isset($_SESSION["questionsWellAnswered"])) {
             $_SESSION["questionsWellAnswered"] = [];
         }
+        // three if
         if (empty($_SESSION["questionsWellAnswered"])) {
             //if it's the beginning of the session, we select a random question
             $question = $questionManager->selectRandomQuestion();
