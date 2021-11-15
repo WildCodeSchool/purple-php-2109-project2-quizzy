@@ -19,8 +19,8 @@
                 
                 {% for answer in question.answers %}
                     <div>
-                        <input type="text" id="{{ answer.id }}" name="{{ answer.title }}" value="{{ answer.title }}">
-                        <input type="checkbox" id="answer-{{loop.index}}-checkbox" name="answer_{{loop.index}}_correct" {{ (answer.is_correct) ? 'checked' : '' }}>
+                        <input type="text" id="answer-{{ answer.id }}" name="{{ answer.title }}" value="{{ answer.title }}">
+                        <input type="checkbox" id="answer-{{answer.id}}-checkbox" name="answer_{{answer.id}}_correct" {{ (answer.is_correct) ? 'checked' : '' }}>
                     </div>
                 {% endfor %}
                 </div>

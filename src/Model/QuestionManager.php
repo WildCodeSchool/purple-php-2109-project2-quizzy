@@ -34,4 +34,24 @@ class QuestionManager extends AbstractManager
         $query = ("SELECT * FROM " . static::TABLE . " WHERE is_admitted = false ORDER BY id LIMIT 5");
         return $this->pdo->query($query)->fetchAll();
     }
+
+    public function updateQuestion(int $id, string $title, int $timeLimit): void
+    {
+        $query = "UPDATE " . static::TABLE .
+        " SET title = :title, timelimit = :timelimit, is_admitted = true
+        WHERE id = :id";
+        $statement = $this->pdo->prepare($query);
+        $statement->bindValue(':id', $id, \PDO::PARAM_INT);
+        $statement->bindValue(':title', $title, \PDO::PARAM_STR);
+        $statement->bindValue(':timelimit', $timeLimit, \PDO::PARAM_INT);
+        $statement->execute();
+    }
+
+    public function deleteQuestion(int $id): void
+    {
+        $query = "DELETE " . static::TABLE . " WHERE id = :id";
+        $statement = $this->pdo->prepare($query);
+        $statement->bindValue(':id', $id, \PDO::PARAM_INT);
+        $statement->execute();
+    }
 }
