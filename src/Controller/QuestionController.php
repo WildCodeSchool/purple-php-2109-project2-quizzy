@@ -43,7 +43,6 @@ class QuestionController extends AbstractController
             // Stock the variables in $_Session to fetch them in the result page
             $_SESSION["question"] = $question;
             $_SESSION["answers"] = $answers;
-            var_dump($_SESSION["questionsWellAnswered"]);
             return $this->twig->render('Question/index.html.twig', [
                 'question' => $question,
                 'answers' => $answers,
