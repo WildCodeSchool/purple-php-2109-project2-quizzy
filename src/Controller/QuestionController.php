@@ -49,8 +49,6 @@ class QuestionController extends AbstractController
                 'answers' => $answers,
                 'session' => $_SESSION,
             ]);
-        } else {
-            header("HTTP/1.0 404 Not Found");
         }
     }
 
