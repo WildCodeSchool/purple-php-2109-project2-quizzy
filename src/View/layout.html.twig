@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="fr">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -8,8 +9,10 @@
     <title>Quizzy - le plus grand quiz du monde !{% block title %}{% endblock %}</title>
 
     <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/formDisplayQuestion.css">
     {% block stylesheet %}{% endblock %}
     <link rel="icon" href="/assets/images/favicon.png">
+    <script src="https://kit.fontawesome.com/ab41dec404.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -17,41 +20,52 @@
     <header class="mobile-header">
         <div class="logo">
             <a href="/">
-                <img src="assets/images/logo-quizzy.svg" alt="Logo de Quizzy" width="50" height="50">
+                <img src="assets/images/logo-quizzy.svg" alt="Logo de Quizzy">
             </a>
         </div>
     </header>
     <header class="wide-screen-header">
         <div class="logo">
             <a href="/">
-                <img src="assets/images/logo-quizzy.svg" alt="Logo de Quizzy" width="50" height="50">
+                <img src="assets/images/logo-quizzy.svg" alt="Logo de Quizzy">
             </a>
         </div>
         <nav>
-            <ul>
-                <li class="btn-home"><a href="/"><img src="assets/images/home.png" width="30" height="30" alt="logo-home"></a></li>
-                <li class="btn-add-question"><a href="/add-question"><img src="assets/images/add-question.png" width="30" height="30" alt="logo-add-a-question"></a></li>
-            </ul>
-        </nav>
+                <ul>
+                    <li>
+                        <a href="/"><i class="fas fa-home"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-plus-circle"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-info-circle"></i></a>
+                    </li>
+                </ul>
+            </nav>
     </header>
+    <main class="main-footer-column">
+        <section class="main">
+            {% block content %}{% endblock %}
+        </section>
 
-    <main>
-        {% block content %}{% endblock %}
-    </main>  
-
-    <footer class="mobile-footer">
-        <nav>
-            <ul>
-                <li class="btn-home"><a href="/"><img src="assets/images/home.png" width="30" height="30" alt="logo-home"></a></li>
-                <li class="btn-add-question"><a href="/add-question"><img src="assets/images/add-question.png" width="30" height="30" alt="logo-add-a-question"></a></li>
-            </ul>
-        </nav>
-        <p>© Tous droits réservés - Quizzy 2021 - <a href="#">Mentions légales</a></p>
-    </footer>
-    <footer class="wide-screen-footer" >
-        <p>© Tous droits réservés - Quizzy 2021 - <a href="#">Mentions légales</a></p>
-    </footer>
-
+        <footer class="mobile-footer">
+            <nav>
+                <ul>
+                    <li>
+                        <a href="/"><i class="fas fa-home"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-plus-circle"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-info-circle"></i></a>
+                    </li>
+                </ul>
+            </nav>
+        </footer>
+    </main>
     {% block javascript %}{% endblock %}
 </body>
+
 </html>
