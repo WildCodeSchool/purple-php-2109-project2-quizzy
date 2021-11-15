@@ -7,7 +7,7 @@ use App\Model\AnswersManager;
 
 class QuestionController extends AbstractController
 {
-    public function show(): mixed
+    public function show()
     {
         $questionManager = new QuestionManager();
         $count = $questionManager->countAllQuestions();
