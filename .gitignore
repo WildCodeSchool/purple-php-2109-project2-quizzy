@@ -4,3 +4,6 @@
 *.cache
 db.php
 .idea
+.DS_Store
+public/.DS_Store
+public/assets/.DS_Store
