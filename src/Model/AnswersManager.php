@@ -27,4 +27,26 @@ class AnswersManager extends AbstractManager
             $statement->execute();
         }
     }
+
+    public function updateAnswers(array $answers): void
+    {
+        $query = "UPDATE " . static::TABLE .
+        " SET title = :title, is_correct = :isCorrect WHERE id = :id";
+        $statement = $this->pdo->prepare($query);
+
+        foreach ($answers as $answer) {
+            $statement->bindValue(':answer', $answer["answer"], \PDO::PARAM_STR);
+            $statement->bindValue(':is_correct', $answer["isCorrect"], \PDO::PARAM_BOOL);
+            $statement->bindValue(':id', $answer["id"], \PDO::PARAM_INT);
+            $statement->execute();
+        }
+    }
+
+    public function deleteAnswers(int $questionId): void
+    {
+        $query = "DELETE " . static::TABLE . " WHERE id_question = :id";
+        $statement = $this->pdo->prepare($query);
+        $statement->bindValue(':id', $questionId, \PDO::PARAM_INT);
+        $statement->execute();
+    }
 }
