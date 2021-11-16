@@ -14,6 +14,14 @@ class AdminManager extends AbstractManager
         return $this->pdo->query($query)->fetch();
     }
 
+    public function isAdminConnected(): void
+    {
+        if (!isset($_SESSION['username']) || !isset($_SESSION['password'])) {
+            header('Location: login');
+        } 
+        
+    }
+    
     public function createArrayNonAdmittedQuestions(array $questions): array
     {
         $answersManager = new AnswersManager();
