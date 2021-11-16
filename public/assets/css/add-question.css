@@ -3,12 +3,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     height: 900px;
     min-width: 200px;
     color: rgba(0, 0, 0, 0.555);
 }
 .title-add-question {
+    margin-top: 50px;
     font-size: 2.5rem;
     color: white;
     text-shadow: 0px 2px 3px black;
@@ -59,6 +60,7 @@ form {
     padding: 5px;
     border: none;
     box-shadow: 0px 1px 2px darkblue;
+    resize: none;
 }
 #question-block label{
     font-size: 1.5rem;
@@ -139,6 +141,9 @@ form {
 /* MAIN | LARGER MOBILE / TABLET PART */
 
 @media screen and (min-width: 600px) {
+    .title-add-question {
+        margin-top: 70px;
+    }
     .answer-block input[type=text], #question {
         width: 400px;
     }
@@ -154,17 +159,16 @@ form {
 
 @media screen and (min-width: 1024px) {
     .title-add-question {
-        margin-top: -50px;
+        margin-top: 160px;
     }
     #question {
         width: 600px;
-        height: 25px;
     }
     #answers-block {
         flex-direction: row;
         flex-wrap: wrap;
         column-gap: 150px;
-        width: 80%;
+        width: 100%;
     }
     .answer-block input[type=text] {
         width: 300px;
@@ -177,13 +181,5 @@ form {
     }
     .error {
         font-size: 1rem;;
-    }
-}
-
-/* MAIN | WIDE SCREEN (DESKTOP) PART */
-
-@media screen and (min-width: 1280px) {
-    #answers-block {
-        width: 80%;
     }
 }
