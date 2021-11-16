@@ -59,10 +59,11 @@ class QuestionController extends AbstractController
         if (isset($_SESSION['question']) && isset($_SESSION['answers'])) {
             $question = $_SESSION['question'];
             $answers = $_SESSION['answers'];
-            self::checkIfCorrect();
+            $iscorrect = self::checkIfCorrect();
             return $this->twig->render('Question/result.html.twig', [
                 'question' => $question,
                 'answers' => $answers,
+                'iscorrect' => $iscorrect,
             ]);
         } else {
             header('Location:/');
@@ -88,6 +89,9 @@ class QuestionController extends AbstractController
                 if ($chosenAnswer['is_correct']) {
                     $_SESSION['score'] ++;
                     $_SESSION["questionsWellAnswered"][] = $questionId;
+                    return true;
+                } else {
+                    return false;
                 }
             }
         } else {
