@@ -45,5 +45,4 @@ class QuestionManager extends AbstractManager
         $statement->bindValue(':title', $title, \PDO::PARAM_STR);
         $statement->execute();
     }
-
 }

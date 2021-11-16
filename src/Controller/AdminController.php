@@ -7,13 +7,6 @@ use App\Model\QuestionManager;
 
 class AdminController extends AbstractController
 {
-    public function isAdminConnected(): void
-    {
-        if (!isset($_SESSION['username']) || !isset($_SESSION['password'])) {
-            header('Location: login');
-        }
-    }
-
     public function showLogin()
     {
         $adminManager = new AdminManager();
@@ -21,10 +14,9 @@ class AdminController extends AbstractController
         $errors = [];
 
         if (isset($_POST['username']) && isset($_POST['password'])) {
-
             $username = $_POST['username'];
             $password = $_POST['password'];
-            
+
             $username = htmlspecialchars(trim($username));
             $password = trim($password);
 
@@ -35,7 +27,7 @@ class AdminController extends AbstractController
             if (empty($password)) {
                 $errors[] = "Veuillez renseigner un mot de passe !";
             }
-            
+
             if ($admin['username'] != $_POST["username"] || $admin['password'] != $_POST["password"]) {
                 $errors[] = "Votre nom d'utilisateur ou votre mot de passe ne correspondent pas";
             }
@@ -45,7 +37,7 @@ class AdminController extends AbstractController
                 $_SESSION['password'] = $admin['password'];
 
                 header("location:/panel");
-            }     
+            }
         }
         return $this->twig->render('Admin/login.html.twig', ['errors' => $errors]);
     }
@@ -54,7 +46,7 @@ class AdminController extends AbstractController
     {
         $adminManager = new AdminManager();
         $adminManager->isAdminConnected();
-        
+
         $questionManager = new QuestionManager();
         $questions = $questionManager->selectNonAdmittedQuestions();
         $questions = $adminManager->createArrayNonAdmittedQuestions($questions);

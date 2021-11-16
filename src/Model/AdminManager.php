@@ -18,10 +18,9 @@ class AdminManager extends AbstractManager
     {
         if (!isset($_SESSION['username']) || !isset($_SESSION['password'])) {
             header('Location: login');
-        } 
-        
+        }
     }
-    
+
     public function createArrayNonAdmittedQuestions(array $questions): array
     {
         $answersManager = new AnswersManager();
