@@ -12,4 +12,5 @@ return [
     'result' => ['QuestionController', 'showResults'],
     'login' => ['AdminController', 'showLogin'],
     'panel' => ['AdminController', 'showPanel'],
+    'edit' => ['AdminController', 'handlingQuestions'],
 ];

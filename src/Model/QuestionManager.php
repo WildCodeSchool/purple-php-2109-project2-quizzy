@@ -12,13 +12,12 @@ class QuestionManager extends AbstractManager
         return $this->pdo->query($query)->fetch();
     }
 
-    public function addQuestion(string $question, int $timeLimit): int
+    public function addQuestion(string $question): int
     {
-        $query = "INSERT INTO " . static::TABLE . " (title, timelimit, is_admitted) 
-        VALUES (:question, :timelimit, false)";
+        $query = "INSERT INTO " . static::TABLE . " (title,  is_admitted) 
+        VALUES (:question, false)";
         $statement = $this->pdo->prepare($query);
         $statement->bindValue(':question', $question, \PDO::PARAM_STR);
-        $statement->bindValue(':timelimit', $timeLimit, \PDO::PARAM_STR);
         $statement->execute();
         return $this->selectLastQuestion()["id"];
     }
@@ -38,7 +37,7 @@ class QuestionManager extends AbstractManager
     public function updateQuestion(int $id, string $title): void
     {
         $query = "UPDATE " . static::TABLE .
-        " SET title = :title, timelimit = :timelimit, is_admitted = true
+        " SET title = :title, is_admitted = true
         WHERE id = :id";
         $statement = $this->pdo->prepare($query);
         $statement->bindValue(':id', $id, \PDO::PARAM_INT);

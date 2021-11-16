@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Model\AdminManager;
 use App\Model\QuestionManager;
+use App\Model\AnswersManager;
+use App\Model\ManagementManager;
 
 class AdminController extends AbstractController
 {
@@ -54,5 +56,24 @@ class AdminController extends AbstractController
         return $this->twig->render('Admin/panel.html.twig', [
             'questions' => $questions,
         ]);
+    }
+
+    public function handlingQuestions()
+    {
+        $adminManager = new AdminManager();
+        $adminManager->isAdminConnected();
+        $questionManager = new QuestionManager();
+        $answersManager = new AnswersManager();
+        $managementManager = new ManagementManager();
+
+        if (isset($_POST["delete"])) {
+            $questionManager->delete($_POST['id']);
+            $answersManager->deleteAnswers($_POST['id']);
+        } elseif (isset($_POST["accept"])) {
+            /*$questionManager->updateQuestion($_POST['id'], $_POST['title']);*/
+            $answerArray = $managementManager->getAnswersFromForm($_POST["firstAnswerId"]);
+            $answersManager->updateAnswers($answerArray, $_POST["firstAnswerId"]);
+        }
+        return $this->showPanel();
     }
 }

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Model\QuestionManager;
 use App\Model\AnswersManager;
 use App\Model\ItemManager;
+use App\Model\ManagementManager;
 
 class ManagementController extends AbstractController
 {
@@ -14,8 +15,8 @@ class ManagementController extends AbstractController
         $question = "";
         $answerArray = [];
         $numberCorrectAnswers = 0;
-        $numberOfAnswers = 1;
-        $timeLimit = 45;
+
+        $managementManager = new ManagementManager();
 
         if (!empty($_POST)) { // If a question is being sent, it has to be checked then added.
             if (isset($_POST["question"])) {
@@ -23,13 +24,12 @@ class ManagementController extends AbstractController
             } else {
                 $errors[] = "Il faut remplir le champ question.";
             }
+
+
             // This pulls the answers from the form and add them to $answerArray
-            while (isset($_POST["answer_" . strval($numberOfAnswers)])) {
-                $answer = $_POST["answer_" . strval($numberOfAnswers) ];
-                $isCorrect = isset($_POST["answer_" . strval($numberOfAnswers) . "_correct"]);
-                $answerArray[] = ["answer" => $answer, "isCorrect" => $isCorrect];
-                $numberOfAnswers++;
-            }
+            $answerArray = $managementManager->getAnswersFromForm();
+            $numberOfAnswers = count($answerArray);
+
             foreach ($answerArray as $answer) { // This checks if answer forms are filled properly.
                 if (empty($answer["answer"])) {
                     $errors[] = "Tous les champs réponses doivent être remplis.";
@@ -39,13 +39,11 @@ class ManagementController extends AbstractController
                 }
             }
 
-            $errors = $this->verifyNumberOfRightAnswer($numberCorrectAnswers, $numberOfAnswers, $errors);
-
-            $timeLimit = $this->addTimeLimit();
+            $errors = $managementManager->verifyNumberOfRightAnswer($numberCorrectAnswers, $numberOfAnswers, $errors);
 
             if (empty($errors)) {
                 $questionManager = new QuestionManager();
-                $questionId = $questionManager->addQuestion($question, $timeLimit);
+                $questionId = $questionManager->addQuestion($question);
                 $answersManager = new AnswersManager();
                 $answersManager->addAnswers($answerArray, $questionId);
             } else {
@@ -53,7 +51,6 @@ class ManagementController extends AbstractController
                     'errors' => $errors,
                     'question' => $question,
                     'answerArray' => $answerArray,
-                    'timeLimit' => $timeLimit,
                 ]);
             }
         }
@@ -62,27 +59,6 @@ class ManagementController extends AbstractController
             'errors' => [],
             'question' => "",
             'answerArray' => [["", false],["", false]],
-            'timeLimit' => 45,
             ]);
-    }
-
-    public function verifyNumberOfRightAnswer(int $numberCorrectAnswers, int $numberOfAnswers, array $errors)
-    {
-        if ($numberCorrectAnswers === 0) {
-            $errors[] = "Au moins une réponse doit être marquée comme correcte.";
-        } elseif ($numberCorrectAnswers === $numberOfAnswers - 1) {
-            $errors[] = "Au moins une réponse doit être marquée comme fausse.";
-        }
-
-        return $errors;
-    }
-
-    public function addTimeLimit()
-    {
-        if (isset($_POST["time-limit"]) || gettype($_POST["time-limit"] != "integer" || $_POST["time-limit"] < 0)) {
-            return 45;
-        } else {
-            return $_POST["time-limit"];
-        }
     }
 }

@@ -28,17 +28,18 @@ class AnswersManager extends AbstractManager
         }
     }
 
-    public function updateAnswers(array $answers): void
+    public function updateAnswers(array $answers, int $firstAnswerId): void
     {
-        $query = "UPDATE " . static::TABLE .
-        " SET title = :title, is_correct = :isCorrect WHERE id = :id";
-        $statement = $this->pdo->prepare($query);
-
+        $currentId = $firstAnswerId;
+        $query = "UPDATE " . static::TABLE . " SET title = :title, is_correct = :isCorrect WHERE id = :id";
         foreach ($answers as $answer) {
-            $statement->bindValue(':answer', $answer["answer"], \PDO::PARAM_STR);
-            $statement->bindValue(':is_correct', $answer["isCorrect"], \PDO::PARAM_BOOL);
-            $statement->bindValue(':id', $answer["id"], \PDO::PARAM_INT);
+            $statement = $this->pdo->prepare($query);
+
+            $statement->bindValue(':title', $answer["answer"], \PDO::PARAM_STR);
+            $statement->bindValue(':isCorrect', $answer["isCorrect"], \PDO::PARAM_BOOL);
+            $statement->bindValue(':id', $currentId, \PDO::PARAM_INT);
             $statement->execute();
+            $currentId += 1;
         }
     }
 

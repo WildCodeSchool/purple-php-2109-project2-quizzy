@@ -9,24 +9,26 @@
         
         <section class="img-and-question">
             <div class="img-question"><img src="assets/images/questions/question-default.jpg" alt="question marks"></div>
-            <form class="question-home" method="post" action="/panel">
+            <form class="question-home" method="post" action="/edit">
+                <input type="hidden" id="questionid" name="id" value="{{ question.id }}">
+                <input type="hidden" id="firstAnswerId" name="firstAnswerId" value="{{ question.answers.0.id }}">
                 <div>
                     <h1>Titre :</h1>
-                    <textarea id="{{ question.id }}" name="{{ question.title }}">{{ question.title }}</textarea>
+                    <textarea id="{{ question.id }}" name="title">{{ question.title }}</textarea>
                 </div><br>
                 <div>
                     <h2>Réponses :</h2>
                 
                 {% for answer in question.answers %}
                     <div>
-                        <input type="text" id="answer-{{ answer.id }}" name="{{ answer.title }}" value="{{ answer.title }}">
+                        <input type="text" id="answer-{{ answer.id }}" name="answer_{{ answer.id }}" value="{{ answer.title }}">
                         <input type="checkbox" id="answer-{{answer.id}}-checkbox" name="answer_{{answer.id}}_correct" {{ (answer.is_correct) ? 'checked' : '' }}>
                     </div>
                 {% endfor %}
                 </div>
                 <div>
-                    <input type="submit" value="Accepter la question">
-                    <input type="submit" value="Supprimer la question">
+                    <input type="submit" value="Accepter la question" name="accept" id="accept">
+                    <input type="submit" value="Supprimer la question" name="delete" id="delete">
                 </div>
             </form>
         </section>

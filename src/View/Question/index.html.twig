@@ -10,6 +10,7 @@
         <section class="img-and-question">
             <div class="img-question"><img src="assets/images/questions/question-image-{{ question['id'] }}.jpg" alt="question marks"></div>
             <form class="question-home" method="post" action="result">
+                <input type="hidden" name="{{ question.id }}">
                 {% for answer in answers %}
                     <div class="input-group">
                         <input type="checkbox" id="{{ answer.id }}" name="{{ answer.title }}" onChange="this.form.submit();">
