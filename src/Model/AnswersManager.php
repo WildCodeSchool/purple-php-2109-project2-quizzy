@@ -28,13 +28,4 @@ class AnswersManager extends AbstractManager
             $statement->execute();
         }
     }
-
-    public function selectAnswerFromChecked($id)
-    {
-        //Fetch in the database the answer that had been clicked
-        $statement = $this->pdo->prepare("SELECT * FROM " . static::TABLE . " WHERE id=:id");
-        $statement->bindValue('id', $id, \PDO::PARAM_INT);
-        $statement->execute();
-        return $statement->fetch();
-    }
 }

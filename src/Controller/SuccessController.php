@@ -4,11 +4,15 @@ namespace App\Controller;
 
 class SuccessController extends AbstractController
 {
-    public function success(): string
+    public function success()
     {
-        $score = $_SESSION['score'];
-        self::unsetUserSession();
-        return $this->twig->render('Question/success.html.twig', ['score' => $score]);
+        if (isset($_SESSION['score'])) {
+            $score = $_SESSION['score'];
+            $this->unsetUserSession();
+            return $this->twig->render('Question/success.html.twig', ['score' => $score]);
+        } else {
+            header("Location:/");
+        }
     }
 
     public function unsetUserSession(): void
