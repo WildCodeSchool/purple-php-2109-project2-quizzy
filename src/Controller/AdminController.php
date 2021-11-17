@@ -11,6 +11,8 @@ class AdminController extends AbstractController
 {
     public function showLogin()
     {
+   /* Management of the connection, currently this only creates an admin session.
+        Also currently there is no way to create an account so functions only account for that. */
         $adminManager = new AdminManager();
         $admin = $adminManager->selectUserAdmin();
         $errors = [];
@@ -46,6 +48,7 @@ class AdminController extends AbstractController
 
     public function showPanel()
     {
+        // This shows questions that are yet to be admitted.
         $adminManager = new AdminManager();
         $adminManager->isAdminConnected();
 
@@ -60,6 +63,8 @@ class AdminController extends AbstractController
 
     public function handlingQuestions()
     {
+        /* This handles the form that can accept or delete a question.
+        It can also modify the questions which is why we update the answers as well as the question. */
         $adminManager = new AdminManager();
         $adminManager->isAdminConnected();
         $questionManager = new QuestionManager();

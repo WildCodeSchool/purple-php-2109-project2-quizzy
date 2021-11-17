@@ -16,6 +16,8 @@ class AdminManager extends AbstractManager
 
     public function isAdminConnected(): void
     {
+        /* This function checks if the user is an admin. As of now, since there is only of user
+        and it is the admin, we only check if the session is set. */
         if (!isset($_SESSION['username']) || !isset($_SESSION['password'])) {
             header('Location: login');
         }
@@ -23,6 +25,7 @@ class AdminManager extends AbstractManager
 
     public function createArrayNonAdmittedQuestions(array $questions): array
     {
+        // When questions are admitted they have to be reviewed, this pull those questions.
         $answersManager = new AnswersManager();
 
         $questionsAndAnswers = [];

@@ -30,6 +30,7 @@ class AnswersManager extends AbstractManager
 
     public function updateAnswers(array $answers, int $firstAnswerId): void
     {
+        // This updates all the answers from a single question.
         $currentId = $firstAnswerId;
         $query = "UPDATE " . static::TABLE . " SET title = :title, is_correct = :isCorrect WHERE id = :id";
         foreach ($answers as $answer) {
@@ -45,6 +46,7 @@ class AnswersManager extends AbstractManager
 
     public function deleteAnswers(int $questionId): void
     {
+        // This delete all answers from a single question.
         $query = "DELETE FROM " . static::TABLE . " WHERE id_question = :id";
         $statement = $this->pdo->prepare($query);
         $statement->bindValue(':id', $questionId, \PDO::PARAM_INT);
