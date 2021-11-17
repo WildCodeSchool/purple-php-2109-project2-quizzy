@@ -28,12 +28,13 @@
                 </div>
             {% endfor %}
         </div>
+        <button id="add-answer">Ajouter une réponse</button>
+        <button id="remove-answer">Retirer une réponse</button>
 
         <div id="send-answer">
             <input type="submit" value="Envoyer la question">
         </div>
     </form>
-    <button id="add-answer">Ajouter une réponse</button>
     
 {% endblock %}
 
@@ -42,21 +43,36 @@
         /* Script that makes the button add another answer div when clicked.
          The first time we click on it, we add the div 3, then 4 etc. */
 
-        let numberOfAnswers = {{ answerArray|length + 1 }}; 
+        let currentNumberOfAnswers = {{ answerArray|length }}; 
         let buttonAddAnswer = document.querySelector("#add-answer");
+        let buttonRemoveAnswer = document.querySelector("#remove-answer");
 
-        buttonAddAnswer.addEventListener('click', function(){
-            if (numberOfAnswers < 4) { // As of now we only allow 4 answers per question
+
+        buttonAddAnswer.addEventListener('click', function(e){
+            e.preventDefault;
+            if (currentNumberOfAnswers < 4) { // As of now we only allow 4 answers per question
+                currentNumberOfAnswers += 1;
                 let node = document.createElement("DIV");
                 node.classList.add("answer-block");
-                node.id = `answer-${numberOfAnswers}-block`
+                node.id = `answer-${currentNumberOfAnswers}-block`
                 
-                node.innerHTML = `<label  for="answer-${numberOfAnswers}">Réponse ${numberOfAnswers} :</label>
-                <input  type="text"  id="answer-${numberOfAnswers}"  name="answer_${numberOfAnswers}">
-                <input type="checkbox" id="answer-${numberOfAnswers}-checkbox" name="answer_${numberOfAnswers}_correct">`;
+                node.innerHTML = `<label  for="answer-${currentNumberOfAnswers}">Réponse ${currentNumberOfAnswers} :</label>
+                <input  type="text"  id="answer-${currentNumberOfAnswers}"  name="answer_${currentNumberOfAnswers}">
+                <input type="checkbox" id="answer-${currentNumberOfAnswers}-checkbox" name="answer_${currentNumberOfAnswers}_correct">`;
 
                 document.getElementById("answers-block").appendChild(node);
-                numberOfAnswers += 1;
+            } else {
+                alert("Vous ne pouvez pas ajouter plus de 4 réponses.");
+            }
+        });
+
+        buttonRemoveAnswer.addEventListener('click', function(){
+            if (currentNumberOfAnswers > 2) { // The form needs at least two answers
+                let node = document.querySelector(`#answer-${currentNumberOfAnswers}-block`);
+                node.parentNode.removeChild(node);
+                currentNumberOfAnswers -= 1;
+            } else {
+                alert("Vous ne pouvez pas avoir moins de 2 réponses.");
             }
         });
         
