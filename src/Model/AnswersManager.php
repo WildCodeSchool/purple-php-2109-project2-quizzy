@@ -8,6 +8,7 @@ class AnswersManager extends AbstractManager
 
     public function selectAnswersForQuestion($id)
     {
+        //fetch all the answers for a question ID
         $statement = $this->pdo->prepare("SELECT * FROM " . static::TABLE . " WHERE id_question=:id_question");
         $statement->bindValue('id_question', $id, \PDO::PARAM_INT);
         $statement->execute();
@@ -26,5 +27,14 @@ class AnswersManager extends AbstractManager
             $statement->bindValue(':is_correct', $answer["isCorrect"], \PDO::PARAM_BOOL);
             $statement->execute();
         }
+    }
+
+    public function selectAnswerFromChecked($id)
+    {
+        //Fetch in the database the answer that had been clicked
+        $statement = $this->pdo->prepare("SELECT * FROM " . static::TABLE . " WHERE id=:id");
+        $statement->bindValue('id', $id, \PDO::PARAM_INT);
+        $statement->execute();
+        return $statement->fetch();
     }
 }
