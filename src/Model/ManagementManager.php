@@ -4,15 +4,20 @@ namespace App\Model;
 
 class ManagementManager extends AbstractManager
 {
-    public function getAnswersFromForm(int $numberofAnswers = 1)
+    public function getAnswersFromForm(int $idOfAnswer = 1)
     {
+        /* This get the sent form and checks for the answers in it. Since a form doesn't have a set number
+        of answers, this needs to check if an answer exists and then add it in a array.
+        This function is also used in the approval question form, so answers will already have an id.
+        It creates a lot of answers in the form of an unkeyed array, that have answers on the form of a keyed array.
+        */
         $answerArray = [];
-        $numberOfAnswers = $numberofAnswers;
-        while (isset($_POST["answer_" . strval($numberOfAnswers)])) {
-            $answer = $_POST["answer_" . strval($numberOfAnswers) ];
-            $isCorrect = isset($_POST["answer_" . strval($numberOfAnswers) . "_correct"]);
+        $idOfAnswer = $idOfAnswer;
+        while (isset($_POST["answer_" . strval($idOfAnswer)])) {
+            $answer = $_POST["answer_" . strval($idOfAnswer) ];
+            $isCorrect = isset($_POST["answer_" . strval($idOfAnswer) . "_correct"]);
             $answerArray[] = ["answer" => $answer, "isCorrect" => $isCorrect];
-            $numberOfAnswers++;
+            $idOfAnswer++;
         }
 
         return $answerArray;

@@ -47,6 +47,7 @@ class ManagementController extends AbstractController
                 $answersManager = new AnswersManager();
                 $answersManager->addAnswers($answerArray, $questionId);
             } else {
+                // If the user sent a faulty form, we inform of the errors and then back what they wrote.
                 return $this->twig->render('Management/add-question.html.twig', [
                     'errors' => $errors,
                     'question' => $question,
@@ -55,6 +56,7 @@ class ManagementController extends AbstractController
             }
         }
 
+        // When we want the user to get a blank form, we initialize the content of the form with two empty answers.
         return $this->twig->render('Management/add-question.html.twig', [
             'errors' => [],
             'question' => "",
