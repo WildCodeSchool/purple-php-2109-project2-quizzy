@@ -20,6 +20,7 @@
                 {% endfor %}
             </div>
         </section>
+        <p class="winner"> {% if iscorrect %}Bonne réponse :D{% else %}Dommage :({% endif%}</p>
         <div id="next-page-button">
             <a href="/" id="redirection">Question suivante (45)</a> 
             <button type="button" id="pause-timer">Stop timer</button>
@@ -37,13 +38,11 @@
             var defaults = {
                 origin: { y: 0.7 }
             };
-
             function fire(particleRatio, opts) {
                 confetti(Object.assign({}, defaults, opts, {
                     particleCount: Math.floor(count * particleRatio)
                 }));
             }
-
             fire(0.25, {
                 spread: 26,
                 startVelocity: 55,
@@ -67,7 +66,7 @@
                 startVelocity: 45,
             });
         }
-
+        //Javascript for Timer
         timer = 45;
         continueTimer = true;
         let x = setInterval(function() {

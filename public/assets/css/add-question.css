@@ -158,6 +158,14 @@ form {
 /* MAIN | LARGER TABLET PART */
 
 @media screen and (min-width: 1024px) {
+    body {
+        display: flex;
+        flex-direction: row-reverse;
+    }
+    .main {
+        display: flex;
+        align-items: center;
+    }
     .title-add-question {
         margin-top: 160px;
     }
@@ -181,5 +189,27 @@ form {
     }
     .error {
         font-size: 1rem;;
+    }
+    .main-footer-column {
+        width: 100%;
+    }
+    .main-footer-column {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow-y: hidden;
+    }
+}
+/* MAIN | WIDE SCREEN (DESKTOP) PART */
+
+@media screen and (min-width: 1280px) {
+    body {
+        flex-direction: row;
+    }
+    .main .question-section {
+        height: 80%;
+        width: 90%;
+        padding-bottom: 0;
     }
 }
