@@ -64,7 +64,8 @@ class AdminController extends AbstractController
     public function handlingQuestions()
     {
         /* This handles the form that can accept or delete a question.
-        It can also modify the questions which is why we update the answers as well as the question. */
+        It can also modify the questions which is why we update the answers as well as the question.
+        After this is done we return to the admin panel.*/
         $adminManager = new AdminManager();
         $adminManager->isAdminConnected();
         $questionManager = new QuestionManager();
@@ -78,6 +79,7 @@ class AdminController extends AbstractController
             $questionManager->updateQuestion($_POST['id'], $_POST['title']);
             $answerArray = $managementManager->getAnswersFromForm($_POST["firstAnswerId"]);
             $answersManager->updateAnswers($answerArray, $_POST["firstAnswerId"]);
+            $adminManager->sendImageForAQuestion();
         }
         return $this->showPanel();
     }

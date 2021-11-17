@@ -11,7 +11,7 @@
         
         <section class="img-and-question">
             <div class="img-question"><img src="assets/images/questions/question-default.jpg" alt="question marks"></div>
-            <form class="question-home" method="post" action="/edit">
+            <form class="question-home" method="post" action="/edit" enctype="multipart/form-data">
                 <input type="hidden" id="questionid" name="id" value="{{ question.id }}">
                 <input type="hidden" id="firstAnswerId" name="firstAnswerId" value="{{ question.answers.0.id }}">
                 <div>
@@ -31,6 +31,8 @@
                 <div>
                     <input type="submit" value="Accepter la question" name="accept" id="accept">
                     <input type="submit" value="Supprimer la question" name="delete" id="delete">
+                    <label for="imageUpload">Envoyer une image correspondant à la question</label>    
+                    <input type="file" name="Image-question" id="imageUpload" />
                 </div>
             </form>
         </section>
