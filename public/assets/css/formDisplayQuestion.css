@@ -91,6 +91,20 @@
 *, *::before, *::after {
     box-sizing: inherit;
 }
+.signal {
+    color: white;
+    font-size: 0.7rem;
+    text-decoration: none;
+}
+.signal:hover {
+    color: orangered;
+    font-size: 1rem;
+    text-shadow: 0px 2px 2px darkblue;
+    transition: 0.2s;
+}
+.signal:hover:after {
+    content: "\26A0";
+}
 
 /* MAIN | LARGER MOBILE / TABLET PART */
 
