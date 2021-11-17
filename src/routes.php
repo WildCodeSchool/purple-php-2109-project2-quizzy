@@ -11,6 +11,5 @@ return [
     'add-question' => ['ManagementController', 'showFormAddQuestion',],
     'result' => ['QuestionController', 'showResults'],
     'success' => ['SuccessController', 'success'],
-    'report' => ['ErrorReportingController', 'addMessage',['id'],],
     'legalnotices' => ['LegalNoticesController', 'legalNotices'],
 ];
