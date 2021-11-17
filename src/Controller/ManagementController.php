@@ -72,6 +72,8 @@ class ManagementController extends AbstractController
             $errors[] = "Au moins une réponse doit être marquée comme correcte.";
         } elseif ($numberCorrectAnswers === $numberOfAnswers - 1) {
             $errors[] = "Au moins une réponse doit être marquée comme fausse.";
+        } elseif ($numberOfAnswers > 4) { // As of now the layout can't handle more than 4 answers.
+            $errors[] = "Vous ne pouvez pas envoyer plus de 4 réponses.";
         }
 
         return $errors;

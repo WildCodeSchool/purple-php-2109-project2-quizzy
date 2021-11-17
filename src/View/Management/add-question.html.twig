@@ -42,20 +42,22 @@
         /* Script that makes the button add another answer div when clicked.
          The first time we click on it, we add the div 3, then 4 etc. */
 
-        let numberofAnswers = {{ answerArray|length + 1 }}; 
+        let numberOfAnswers = {{ answerArray|length + 1 }}; 
         let buttonAddAnswer = document.querySelector("#add-answer");
 
         buttonAddAnswer.addEventListener('click', function(){
-            let node = document.createElement("DIV");
-            node.classList.add("answer-block");
-            node.id = `answer-${numberofAnswers}-block`
-            
-            node.innerHTML = `<label  for="answer-${numberofAnswers}">Réponse ${numberofAnswers} :</label>
-            <input  type="text"  id="answer-${numberofAnswers}"  name="answer_${numberofAnswers}">
-            <input type="checkbox" id="answer-${numberofAnswers}-checkbox" name="answer_${numberofAnswers}_correct">`;
+            if (numberOfAnswers < 4) { // As of now we only allow 4 answers per question
+                let node = document.createElement("DIV");
+                node.classList.add("answer-block");
+                node.id = `answer-${numberOfAnswers}-block`
+                
+                node.innerHTML = `<label  for="answer-${numberOfAnswers}">Réponse ${numberOfAnswers} :</label>
+                <input  type="text"  id="answer-${numberOfAnswers}"  name="answer_${numberOfAnswers}">
+                <input type="checkbox" id="answer-${numberOfAnswers}-checkbox" name="answer_${numberOfAnswers}_correct">`;
 
-            document.getElementById("answers-block").appendChild(node);
-            numberofAnswers += 1;
+                document.getElementById("answers-block").appendChild(node);
+                numberOfAnswers += 1;
+            }
         });
         
     </script>
