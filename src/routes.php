@@ -12,4 +12,5 @@ return [
     'result' => ['QuestionController', 'showResults'],
     'success' => ['SuccessController', 'success'],
     'legalnotices' => ['LegalNoticesController', 'legalNotices'],
+    'report' => ['ErrorReportingController', 'addMessage',['id'],],
 ];
