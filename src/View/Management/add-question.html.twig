@@ -1,40 +1,38 @@
 {% extends 'layout.html.twig' %}
 
+{% block stylesheet %}
+<link rel="stylesheet" href="/assets/css/add-question.css">
+{% endblock %}
+
 {% block content %}
-
-    <div id="error">
-        {% for error in errors %}
-            <li>{{ error }}</li>
-        {% endfor %}
-    </div>
+    <h1 class="title-add-question">Ajoute ta question dans Quizzy</h1>
     <form action="add-question" method="post">
-
         <div id="question-block">
-            <label  for="question">Votre question :</label>
+            <label  for="question">Indique ta question :</label>
             <textarea id="question" name="question" required>{{question}}</textarea>
         </div>
-
-        <div id="time-limit-block">
-            <label  for="time-limit">Temps limite :</label>
-            <input  type="number"  id="time-limit"  name="time-limit" value="{{timeLimit}}" required>
-        </div>
-
+        <h2>Ajoute au moins <span>2 réponses</span> à ta question. <br>Et coche au moins <span>1 case</span> pour indiquer la ou les bonne(s) réponse(s).</h2>
         <div id="answers-block">
             {% for answer in answerArray %}
                 <div id="answer-{{loop.index}}-block" class="answer-block">
-                    <label  for="answer-{{loop.index}}">Réponse {{loop.index}} :</label>
-                    <input  type="text"  id="answer-{{loop.index}}"  name="answer_{{loop.index}}" value="{{answer.answer}}" required>
+                    <div class="label-input">
+                        <label  for="answer-{{loop.index}}">Réponse {{loop.index}} :&nbsp;</label>
+                        <input  type="text"  id="answer-{{loop.index}}"  name="answer_{{loop.index}}" value="{{answer.answer}}" placeholder="Entrez une réponse" required>
+                    </div>
                     <input type="checkbox" id="answer-{{loop.index}}-checkbox" name="answer_{{loop.index}}_correct">
                 </div>
             {% endfor %}
         </div>
-
+        <button id="add-answer">Ajouter une réponse</button>
+        <ul>
+            {% for error in errors %}
+                <li class="error">{{ error }}</li>
+            {% endfor %}
+        </ul>
         <div id="send-answer">
             <input type="submit" value="Envoyer la question">
         </div>
     </form>
-    <button id="add-answer">Ajouter une réponse</button>
-    
 {% endblock %}
 
 {% block javascript %}
@@ -50,13 +48,13 @@
             node.classList.add("answer-block");
             node.id = `answer-${numberofAnswers}-block`
             
-            node.innerHTML = `<label  for="answer-${numberofAnswers}">Réponse ${numberofAnswers} :</label>
-            <input  type="text"  id="answer-${numberofAnswers}"  name="answer_${numberofAnswers}">
+            node.innerHTML = `<div class="label-input"><label  for="answer-${numberofAnswers}">Réponse ${numberofAnswers} :</label>
+            <input  type="text"  id="answer-${numberofAnswers}"  name="answer_${numberofAnswers}"  placeholder="Entrez une réponse">
+            </div>
             <input type="checkbox" id="answer-${numberofAnswers}-checkbox" name="answer_${numberofAnswers}_correct">`;
 
             document.getElementById("answers-block").appendChild(node);
             numberofAnswers += 1;
-        });
-        
+        }); 
     </script>
 {% endblock %}
