@@ -3,22 +3,20 @@
     <link rel="stylesheet" href="/assets/css/adminPanel.css">
 {% endblock %}
 {% block content %}
-<p>Salut !</p>
-
+<h1>Questions en attente</h1> 
+<section class="approval-section">
 {% for question in questions %}
-    <section class="question-section">
-        <h1 class="question-title"></h1>
-        
+    <section class="question-section">     
         <section class="img-and-question">
             <div class="img-question"><img src="assets/images/questions/question-default.jpg" alt="question marks"></div>
             <form class="question-home" method="post" action="/edit">
                 <input type="hidden" id="questionid" name="id" value="{{ question.id }}">
                 <input type="hidden" id="firstAnswerId" name="firstAnswerId" value="{{ question.answers.0.id }}">
-                <div>
-                    <h1>Titre :</h1>
+                <div class="edit-title">
+                    <h2>Titre :</h2>
                     <textarea id="{{ question.id }}" name="title">{{ question.title }}</textarea>
                 </div><br>
-                <div>
+                <div class="edit-answers">
                     <h2>Réponses :</h2>
                 
                 {% for answer in question.answers %}
@@ -28,7 +26,7 @@
                     </div>
                 {% endfor %}
                 </div>
-                <div>
+                <div class="edit-buttons">
                     <input type="submit" value="Accepter la question" name="accept" id="accept">
                     <input type="submit" value="Supprimer la question" name="delete" id="delete">
                 </div>
@@ -36,5 +34,5 @@
         </section>
     </section>
 {% endfor %}
-
+</section>
 {% endblock %}

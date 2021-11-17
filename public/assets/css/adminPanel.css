@@ -1,0 +1,170 @@
+/* MAIN | MOBILE PART */ 
+
+main .approval-section {
+    overflow-y: scroll;
+    height: 430px;
+    border-radius: 25px;
+}
+
+.main h1 {
+    padding: .5em 0 1em 0;
+    text-align: center;
+}
+
+.main {
+    padding: 3.5em 1em 1em 1em;
+}
+
+.main .question-section {
+    margin-top: 0px;
+    margin-bottom: 2em;
+}
+
+.main .approval-section .question-section {
+    color: #fff;
+}
+
+.main .approval-section .question-section .edit-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: .5em;
+}
+
+.main .approval-section .question-section .edit-buttons input {
+    width: 50%;
+    margin: .5em;
+    padding: .6em;
+    border-radius: 10px;
+    border: none;
+    color: var(--form-bg-color);
+    background-color:#fff;
+    font-weight: bold;
+    box-shadow: 0px 1px 2px darkblue;
+    cursor: pointer;
+}
+
+.main .approval-section .question-section .edit-buttons #accept:hover {
+    background-color: rgb(196, 233, 196);
+    color: rgb(36, 165, 24);
+}
+
+.main .approval-section .question-section .edit-buttons #delete:hover {
+    background-color: rgb(228, 145, 145, 0.911);
+    color: rgb(206, 31, 31);
+}
+
+.main .approval-section .question-section .img-question {
+    padding: 1em 0 .5em 0;
+    margin: auto;
+}
+
+.main .approval-section .edit-title, .edit-answers {
+    width: 100%;
+}
+
+.main .approval-section .edit-answers div {
+    margin-left: -0.6em;
+}
+
+.main .approval-section .edit-title textarea {
+    resize: none;
+    padding: .5em;
+    margin: .5em 0 1em;
+    border-radius: 5px;
+    width: 50%;
+}
+
+.main .approval-section .edit-answers input[type=text] {
+    width: 50%;
+    margin: .5em 0;
+    border: none;
+    border-radius: 5px;
+    height: 35px;
+    padding: 0 2em 0 .8em;
+}
+
+.main .approval-section .edit-answers input[type=checkbox] {
+    height: 15px;
+    margin-left: -2em;
+    cursor: pointer;
+}
+
+/* MAIN | LARGER MOBILE / TABLET PART */
+
+@media screen and (min-width: 500px) {
+    .main h1 {
+        padding: 1em 0 1em 0;
+        text-align: center;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .main .img-and-question {
+        padding: 1em 0;
+    }
+
+    .main .question-section {
+        padding-bottom: 0;
+    }
+}
+
+@media screen and (min-width: 700px) {
+    .main .approval-section .edit-answers div {
+        margin-left: -0.8em;
+    }
+
+    .main .approval-section .question-section .edit-buttons {
+        flex-wrap: nowrap;
+    }
+
+    .main .approval-section .question-section .img-question {
+        padding: 1.5em 0 0.5em 0;
+    }
+}
+
+@media screen and (min-width: 800px) {
+
+}
+
+/* MAIN | LARGER TABLET PART */
+
+@media screen and (min-width: 1024px) {
+    .main {
+        display: block;
+    }
+
+    main .approval-section {
+        height: 600px;
+    }
+
+    .main .approval-section .question-section .edit-buttons {
+        margin-top: 1em;
+    }
+
+    .main .approval-section .edit-answers div {
+        margin-left: -.6em;
+    }
+
+    .main .approval-section .edit-answers h2 {
+        margin: .4em 0;
+    }
+
+    .main .approval-section .question-section .edit-buttons input {
+        font-size: .9em;
+        margin: 0.5em 1em;
+    }
+}
+
+/* MAIN | WIDE SCREEN (DESKTOP) PART */
+
+@media screen and (min-width: 1280px) {
+    .main .question-section {
+        width: 75%;
+    }
+
+    .main .img-and-question {
+        display: flex;
+        justify-content: center;
+    }
+}
