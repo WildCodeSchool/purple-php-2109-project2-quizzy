@@ -1,0 +1,280 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url(../fonts/Roboto/Roboto-Regular.ttf);
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url(../fonts/Roboto/Roboto-Italic.ttf);
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url(../fonts/Roboto/Roboto-Bold.ttf);
+    font-weight: bold;
+}
+
+/* VARIABLES */
+
+:root {
+    --main-bg-color: #9DBEFF;
+    --header-footer-color: #346FE5;
+    --form-bg-color: #2E70F5;
+    --button-bg-color: #1D3E80;
+}
+
+/* HEADER | MOBILE PART */
+
+body {
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+    font-size: 22px;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+h3 {
+    font-size: 18px;
+}
+
+.wide-screen-header, .wide-screen-footer {
+    display: none;
+}
+
+.mobile-header {
+    width: 100%;
+    height: 6em;
+    background-color: var(--header-footer-color);
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+.mobile-header .logo img {
+    width: 115px;
+    height: 115px;
+}
+
+.mobile-header .logo {
+    padding-top: 2.6em;
+}
+
+/* HEADER | LARGER MOBILE / TABLET PART */
+
+@media screen and (min-width: 500px) {
+
+    .mobile-header {
+        height: 6.3em;
+    }
+
+    .mobile-header .logo img {
+        width: 140px;
+        height: 140px;
+    }
+    
+    .mobile-header .logo {
+        padding-top: 2.4em;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+    
+    h2 {
+        font-size: 22px;
+    }
+    
+    h3 {
+        font-size: 20px;
+    }
+
+}
+
+@media screen and (min-width: 800px) {
+    
+    .mobile-header {
+        height: 7em;
+    }
+
+    .mobile-header .logo img {
+        width: 160px;
+        height: 160px;
+    }
+
+    body {
+        font-size: 18px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+    
+    h2 {
+        font-size: 23px;
+    }
+    
+    h3 {
+        font-size: 20px;
+    }
+}
+
+/* HEADER | LARGER TABLET PART */
+
+@media screen and (min-width: 1024px) {
+
+    .mobile-header {
+        display: none;
+    }
+
+    .wide-screen-header, .wide-screen-footer {
+        display: block;
+    }
+
+    .wide-screen-header {
+        background-color: var(--header-footer-color);
+        width: 15%;
+        margin-left: 2em;
+        z-index: 5;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+    
+    h2 {
+        font-size: 25px;
+    }
+    
+    h3 {
+        font-size: 22px;
+    }
+
+    .wide-screen-header .logo {
+        margin-left: -5.8em;
+        margin-top: 20%;
+    }
+
+    .wide-screen-header .logo img {
+        width: 175px;
+    }
+
+    .wide-screen-header nav {
+        margin-top: 4em;
+    }
+
+    .wide-screen-header nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+
+    .wide-screen-header nav ul li {
+        list-style: none;
+        text-align: center;
+        width: 100%;
+        padding: .5em 0;
+        margin: 1em auto;
+        height: 2em;
+    }
+
+    .wide-screen-header i {
+        font-size: 35px;
+        color: #fff;
+    }
+    
+    .wide-screen-header i:hover {
+        font-size: 40px;
+    }
+}
+
+/* HEADER | WIDE SCREEN (DESKTOP) PART */
+
+@media screen and (min-width: 1280px) {
+    .wide-screen-header .logo {
+        margin-left: 2.9em;
+    }
+
+    .wide-screen-header {
+        width: 120px;
+        margin-right: 2em;
+        margin-left: 0;
+    }
+}
+
+/* MAIN */
+
+.main-footer-column {
+    background-color: var(--main-bg-color);
+}
+
+.main {
+    padding: 3em 1em 1em 1em;
+}
+
+/* FOOTER | MOBILE PART */
+
+.mobile-footer {
+    background-color: var(--header-footer-color);
+    display: flex;
+    flex-wrap: wrap;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 10;
+    height: 4em;
+}
+
+.mobile-footer nav {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.mobile-footer i {
+    font-size: 35px;
+    color: #fff;
+}
+
+.mobile-footer i:hover {
+    font-size: 40px;
+}
+
+.mobile-footer nav ul {
+    display: flex;
+    justify-content: space-evenly;
+    padding: .8em 0 1em 0;
+}
+
+.mobile-footer nav ul li {
+    width: 5em;
+    list-style: none;
+    text-align: center;
+}
+
+/* FOOTER | LARGER MOBILE / TABLET PART */
+
+@media screen and (min-width: 800px) {
+    .mobile-footer nav {
+        width: 60%;
+        margin: 0 auto;
+    }
+}
+
+/* FOOTER | LARGER TABLET PART */
+
+@media screen and (min-width: 1024px) {
+    .mobile-footer {
+        display: none;
+    }
+}
