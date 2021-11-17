@@ -45,7 +45,7 @@ class AnswersManager extends AbstractManager
 
     public function deleteAnswers(int $questionId): void
     {
-        $query = "DELETE " . static::TABLE . " WHERE id_question = :id";
+        $query = "DELETE FROM " . static::TABLE . " WHERE id_question = :id";
         $statement = $this->pdo->prepare($query);
         $statement->bindValue(':id', $questionId, \PDO::PARAM_INT);
         $statement->execute();

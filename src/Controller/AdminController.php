@@ -70,7 +70,7 @@ class AdminController extends AbstractController
             $questionManager->delete($_POST['id']);
             $answersManager->deleteAnswers($_POST['id']);
         } elseif (isset($_POST["accept"])) {
-            /*$questionManager->updateQuestion($_POST['id'], $_POST['title']);*/
+            $questionManager->updateQuestion($_POST['id'], $_POST['title']);
             $answerArray = $managementManager->getAnswersFromForm($_POST["firstAnswerId"]);
             $answersManager->updateAnswers($answerArray, $_POST["firstAnswerId"]);
         }
