@@ -1,0 +1,71 @@
+/* MAIN | MOBILE PART */ 
+
+.main {
+    height: 900px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    justify-content: flex-start;
+}
+.title-success {
+    margin-top: 100px;
+    padding: 20px;
+    font-size: 2em;
+    text-align: center;
+    color: white;
+    text-shadow: 0px 2px 3px darkblue;
+}
+.try-again-button {
+    margin-top: 40px;
+    background-color: white;
+    padding: 15px;
+    border-radius: 15px;
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.719);
+    box-shadow: 0px 2px 2px darkblue;
+}
+.try-again-button:hover {
+    background: linear-gradient(blue, white);
+    color: white;
+    text-shadow: 0px 2px 2px darkblue;
+    transform: scale(1.2);
+    cursor: pointer;
+    transition: all 200ms ease-in;
+}
+
+/* MAIN | LARGER TABLET PART */
+
+@media screen and (min-width: 1024px) {
+    body {
+        display: flex;
+        flex-direction: row-reverse;
+    }
+    .main-footer-column {
+        width: 100%;
+    }
+    .main {
+        justify-content: center;
+        align-items: center;
+    }
+    .title-success {
+        margin-top: 0;
+        font-size: 3em;
+        margin-top: -60px;
+    }
+    .main-footer-column {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow-y: hidden;
+    }
+}
+
+/* MAIN | WIDE SCREEN (DESKTOP) PART */
+
+@media screen and (min-width: 1280px) {
+    body {
+        flex-direction: row;
+    }
+}
