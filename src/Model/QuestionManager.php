@@ -52,7 +52,7 @@ class QuestionManager extends AbstractManager
 
     public function countAllQuestions(): array
     {
-        $query = ("SELECT COUNT(*) AS total FROM question");
+        $query = ("SELECT COUNT(*) AS total FROM question WHERE is_admitted = true");
         return $this->pdo->query($query)->fetch();
     }
 }
