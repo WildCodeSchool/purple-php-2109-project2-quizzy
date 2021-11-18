@@ -32,7 +32,9 @@ class AdminController extends AbstractController
                 $errors[] = "Veuillez renseigner un mot de passe !";
             }
 
-            if ($admin['username'] != $_POST["username"] || $admin['password'] != $_POST["password"]) {
+
+
+            if ($admin['username'] != $_POST["username"] || !password_verify($_POST["password"], $admin['password'])) {
                 $errors[] = "Votre nom d'utilisateur ou votre mot de passe ne correspondent pas";
             }
 
