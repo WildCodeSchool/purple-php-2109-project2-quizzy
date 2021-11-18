@@ -1,0 +1,30 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="/assets/css/login.css">
+{% endblock %}
+
+{% block content %}
+<section class="login-section">
+    <h1>Connexion au panneau administrateur</h1>
+    <form method="post" action="/login">
+        <div class="username-field">
+            <label for="username">Nom d'utilisateur</label>
+            <input class="input" type="text" id="username" name="username" placeholder="Nom d'utilisateur">
+        </div>
+        <div class="password-field">
+            <label for="password">Mot de passe</label>
+            <input type="password" id="password" name="password" placeholder="Mot de passe">
+        </div>
+        <div class="connection-button">
+            <input type="submit" value="Se connecter">
+        </div>
+    </form>
+
+    <section>
+        {% for error in errors %}
+            <p>{{ error }}</p>
+        {% endfor %}
+    </section>
+</section>
+{% endblock %}

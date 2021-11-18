@@ -1,7 +1,4 @@
 /* MAIN | MOBILE PART */ 
-.main {
-    height: 800px;
-}
 .main .question-section {
     height: 80%;
     text-align: center;
@@ -130,39 +127,14 @@
 
 @media screen and (min-width: 1024px) {
 
-    .main {
-        width: 100%;
-    }
     .main .question-section {
         margin: 0 auto;
-    }
-    body {
-        display: flex;
-        flex-direction: row-reverse;
-    }
-    .main-footer-column {
-        width: 100%;
-    }
-    .main {
-        display: flex;
-        align-items: center;
-    }
-    .main-footer-column {
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow-y: hidden;
     }
 }
 
 /* MAIN | WIDE SCREEN (DESKTOP) PART */
 
 @media screen and (min-width: 1280px) {
-    body {
-        display: flex;
-        flex-direction: row;
-    }
     .main .question-section {
         height: 65%;
         width: 80%;

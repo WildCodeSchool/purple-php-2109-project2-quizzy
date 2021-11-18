@@ -329,7 +329,7 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` text NOT NULL,
-  `password` text,
+  `password` VARCHAR(255),
   `is_admin` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
@@ -339,7 +339,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `is_admin`) VALUES
-(1, 'Admin', '6F87e59csWZdS2sN', 1);
+(1, 'Admin', '$2y$10$woU.SkWoX0S7pcRBhQ974O587ctF3I/BhhQ45O7aBL5h9xMZWLzQ6', 1);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

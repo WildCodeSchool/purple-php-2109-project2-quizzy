@@ -10,6 +10,9 @@ return [
     '' => ['QuestionController', 'show',],
     'add-question' => ['ManagementController', 'showFormAddQuestion',],
     'result' => ['QuestionController', 'showResults'],
+    'login' => ['AdminController', 'showLogin'],
+    'panel' => ['AdminController', 'showPanel'],
+    'edit' => ['AdminController', 'handlingQuestions'],
     'success' => ['SuccessController', 'success'],
     'legalnotices' => ['LegalNoticesController', 'legalNotices'],
 ];
