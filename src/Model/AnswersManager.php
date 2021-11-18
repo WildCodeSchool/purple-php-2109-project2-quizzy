@@ -8,6 +8,7 @@ class AnswersManager extends AbstractManager
 
     public function selectAnswersForQuestion($id): array
     {
+        //fetch all the answers for a question ID
         $statement = $this->pdo->prepare("SELECT * FROM " . static::TABLE . " WHERE id_question=:id_question");
         $statement->bindValue('id_question', $id, \PDO::PARAM_INT);
         $statement->execute();

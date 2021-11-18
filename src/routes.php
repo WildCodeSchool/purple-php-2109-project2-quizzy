@@ -13,4 +13,6 @@ return [
     'login' => ['AdminController', 'showLogin'],
     'panel' => ['AdminController', 'showPanel'],
     'edit' => ['AdminController', 'handlingQuestions'],
+    'success' => ['SuccessController', 'success'],
+    'legalnotices' => ['LegalNoticesController', 'legalNotices'],
 ];
