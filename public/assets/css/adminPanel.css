@@ -18,6 +18,7 @@ main .approval-section {
 .main .question-section {
     margin-top: 0px;
     margin-bottom: 2em;
+    height: auto;
 }
 
 .main .approval-section .question-section {

@@ -72,6 +72,10 @@ h3 {
     padding-top: 2.6em;
 }
 
+.main {
+    height: 800px;
+}
+
 /* HEADER | LARGER MOBILE / TABLET PART */
 
 @media screen and (min-width: 500px) {
@@ -222,6 +226,43 @@ h3 {
 
 .main {
     padding: 3em 1em 1em 1em;
+}
+
+/* MAIN | LARGER TABLET PART */
+
+@media screen and (min-width: 1024px) {
+
+    .main {
+        width: 100%;
+        display: flex;
+        align-items: center;
+    }
+
+    body {
+        display: flex;
+        flex-direction: row-reverse;
+    }
+
+    .main-footer-column {
+        width: 100%;
+    }
+
+    .main-footer-column {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow-y: hidden;
+    }
+}
+
+/* MAIN | WIDE SCREEN (DESKTOP) PART */
+
+@media screen and (min-width: 1280px) {
+    body {
+        display: flex;
+        flex-direction: row;
+    }
 }
 
 /* FOOTER | MOBILE PART */
