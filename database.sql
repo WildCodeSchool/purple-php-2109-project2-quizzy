@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 03 nov. 2021 à 09:19
+-- Généré le : mer. 17 nov. 2021 à 13:30
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.4.9
 
@@ -216,27 +216,6 @@ CREATE TABLE IF NOT EXISTS `goodanswer` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `item`
---
-
-DROP TABLE IF EXISTS `item`;
-CREATE TABLE IF NOT EXISTS `item` (
-  `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `item`
---
-
-INSERT INTO `item` (`id`, `title`) VALUES
-(1, 'Stuff'),
-(3, 'jkdbnfkjb');
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `question`
 --
 
@@ -298,6 +277,29 @@ INSERT INTO `question` (`id`, `title`, `timelimit`, `explanation`, `is_admitted`
 (37, 'La somme des angles d\'un triangle est égale à ?', 60, NULL, 1, 1, NULL),
 (38, 'Comment conjugue-t-on au futur le verbe connaître à la troisième personne du singulier ?', 60, NULL, 1, 1, NULL),
 (39, 'Lequel de ces pays a une frontière commune avec la Pologne ?', 60, NULL, 1, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `report`
+--
+
+DROP TABLE IF EXISTS `report`;
+CREATE TABLE IF NOT EXISTS `report` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` text NOT NULL,
+  `is_read` tinyint(1) DEFAULT '0',
+  `id_question` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_question` (`id_question`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `report`
+--
+
+INSERT INTO `report` (`id`, `title`, `is_read`, `id_question`) VALUES
+(1, 'aaaaaaa', 0, 1);
 
 -- --------------------------------------------------------
 

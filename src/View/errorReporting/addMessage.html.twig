@@ -4,6 +4,9 @@
     <h1>Signaler une erreur</h1>
     <p><strong>Intitulé de la question : </strong>{{question.title}}</p>
     <form method="post">
+        {% if error %}
+        <p class="error">Merci de compléter le champ message.</p>
+        {% endif %}
         <label for='message'> Merci de nous indiquer l'erreur que vous avez repérée.</label> 
         <textarea id='message' name='message'>
         </textarea>
