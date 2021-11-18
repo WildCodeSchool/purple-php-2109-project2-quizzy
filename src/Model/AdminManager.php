@@ -43,7 +43,10 @@ class AdminManager extends AbstractManager
     public function sendImageForAQuestion(): void
     {
         // This sends an image to the question folder if one is sent, for now the extension is changed to .jpg
-        if (substr(mime_content_type($_FILES["image-question"]["tmp_name"]), 0, 5) == "image") {
+        if (
+            is_uploaded_file($_FILES["image-question"]["tmp_name"]) &&
+            substr(mime_content_type($_FILES["image-question"]["tmp_name"]), 0, 5) == "image"
+        ) {
             $uploadDir =  __DIR__ . '/../../public/assets/images/questions/';
             $uploadFile = $uploadDir . "question-image-" . strval($_POST['id']) . ".jpg";
             move_uploaded_file($_FILES['image-question']['tmp_name'], $uploadFile);
