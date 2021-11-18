@@ -101,7 +101,7 @@ form {
     margin-left: -30px;
     cursor: pointer;
 }
-#add-answer {
+#add-answer, #remove-answer {
     margin-top: 15px;
     width: 150px;
     padding: 7px;
@@ -113,7 +113,7 @@ form {
     box-shadow: 0px 1px 2px darkblue;
     cursor: pointer;
 }
-#add-answer:hover {
+#add-answer:hover, #remove-answer:hover {
     background-color: rgb(7, 7, 121);
     transition: 0.4s;
 }
