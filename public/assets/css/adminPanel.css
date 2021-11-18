@@ -31,7 +31,7 @@ main .approval-section {
     margin-top: .5em;
 }
 
-.main .approval-section .question-section .edit-buttons input {
+.main .approval-section .question-section .edit-buttons input, .send-image {
     width: 50%;
     margin: .5em;
     padding: .6em;
