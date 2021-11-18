@@ -49,7 +49,6 @@ class ManagementManager extends AbstractManager
         }
 
         $errors = $this->checkNumberOfErrors($numberCorrectAnswers, $numberOfAnswers, $errors);
-        var_dump($errors);
         return $errors;
     }
 
