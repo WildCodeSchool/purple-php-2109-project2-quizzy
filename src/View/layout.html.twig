@@ -1,21 +1,70 @@
 <!doctype html>
 <html lang="fr">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{% block title %}{% endblock %}</title>
+    <title>Quizzy - le plus grand quiz du monde !{% block title %}{% endblock %}</title>
 
     <link rel="stylesheet" href="/assets/css/style.css">
     {% block stylesheet %}{% endblock %}
     <link rel="icon" href="/assets/images/favicon.png">
+    <script src="https://kit.fontawesome.com/ab41dec404.js" crossorigin="anonymous"></script>   
 </head>
 
 <body>
-    {% block content %}{% endblock %}
+
+    <header class="mobile-header">
+        <div class="logo">
+            <a href="/">
+                <img src="assets/images/logo-quizzy.svg" alt="Logo de Quizzy">
+            </a>
+        </div>
+    </header>
+    <header class="wide-screen-header">
+        <div class="logo">
+            <a href="/">
+                <img src="assets/images/logo-quizzy.svg" alt="Logo de Quizzy">
+            </a>
+        </div>
+        <nav>
+                <ul>
+                    <li>
+                        <a href="/"><i class="fas fa-home"></i></a>
+                    </li>
+                    <li>
+                        <a href="add-question"><i class="fas fa-plus-circle"></i></a>
+                    </li>
+                    <li>
+                        <a href="legalnotices"><i class="fas fa-info-circle"></i></a>
+                    </li>
+                </ul>
+            </nav>
+    </header>
+    <main class="main-footer-column">
+        <section class="main">
+            {% block content %}{% endblock %}
+        </section>
+
+        <footer class="mobile-footer">
+            <nav>
+                <ul>
+                    <li>
+                        <a href="/"><i class="fas fa-home"></i></a>
+                    </li>
+                    <li>
+                        <a href="add-question"><i class="fas fa-plus-circle"></i></a>
+                    </li>
+                    <li>
+                        <a href="legalnotices"><i class="fas fa-info-circle"></i></a>
+                    </li>
+                </ul>
+            </nav>
+        </footer>
+    </main>
     {% block javascript %}{% endblock %}
 </body>
+
 </html>
-
-

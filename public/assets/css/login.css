@@ -1,0 +1,89 @@
+.main {
+    display: flex;
+    justify-content: center;
+}
+
+.main .login-section {
+    margin-top: 2em;
+    text-align: center;
+    border: 4px solid #fff;
+    border-radius: 25px;
+    background-color: var(--form-bg-color);
+    padding: 2em;
+    height: fit-content;
+}
+
+.main .login-section form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main .login-section h1 {
+    margin-bottom: .5em;
+    color: #fff;
+}
+
+.main .login-section form .username-field, .password-field {
+    margin: 1em auto;
+    background-color: #fff;
+    margin: .7em 0;
+    width: 85%;
+    border-radius: 5px;
+    padding: .6em;
+    display: flex;
+    justify-content: space-around;
+}
+
+.main .login-section form .password-field input {
+    margin-left: 2em;
+}
+
+.main .login-section form .username-field input, .password-field input {
+    border: solid .5px #000;
+    border-radius: 2px;
+    padding-left: .5em;
+} 
+
+.main .login-section form .connection-button {
+    width: 35%;
+    margin-top: 1.5em;
+}
+
+.main .login-section form .connection-button input {
+    width: 100%;
+    padding: .6em;
+    font-size: .8em;
+    font-weight: bold;
+    border-radius: 10px;
+    border: none;
+    color: var(--form-bg-color);
+    background-color:#fff;
+}
+
+.main .login-section form .connection-button input:hover {
+    color: #fff;
+    background-color: var(--button-bg-color);
+    cursor: pointer;
+}
+
+/* MAIN | LARGER MOBILE / TABLET PART */
+
+@media screen and (min-width: 600px) {
+    .main .login-section form .connection-button {
+        width: 35%;
+    }
+
+    .main .login-section form .connection-button input {
+        font-size: .9em;
+    }
+}
+
+
+/* MAIN | LARGER TABLET PART */
+
+@media screen and (min-width: 1024px) {
+    .main .login-section {
+        margin-top: 0;
+    }
+}
