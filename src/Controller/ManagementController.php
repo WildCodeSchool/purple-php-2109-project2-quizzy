@@ -14,8 +14,6 @@ class ManagementController extends AbstractController
         $errors = [];
         $question = "";
         $answerArray = [];
-        $numberCorrectAnswers = 0;
-
         $managementManager = new ManagementManager();
 
         if (!empty($_POST)) { // If a question is being sent, it has to be checked then added.
@@ -28,18 +26,8 @@ class ManagementController extends AbstractController
 
             // This pulls the answers from the form and add them to $answerArray
             $answerArray = $managementManager->getAnswersFromForm();
-            $numberOfAnswers = count($answerArray);
 
-            foreach ($answerArray as $answer) { // This checks if answer forms are filled properly.
-                if (empty($answer["answer"])) {
-                    $errors[] = "Tous les champs réponses doivent être remplis.";
-                }
-                if ($answer["isCorrect"]) { // This checks if at least one answer is correct.
-                    $numberCorrectAnswers++ ;
-                }
-            }
-
-            $errors = $managementManager->verifyNumberOfRightAnswer($numberCorrectAnswers, $numberOfAnswers, $errors);
+            $errors = $managementManager->verifyAnswersFromForm($answerArray);
 
             if (empty($errors)) {
                 $questionManager = new QuestionManager();
