@@ -1,0 +1,9 @@
+main {
+    height: 2000px;
+}
+.main {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
