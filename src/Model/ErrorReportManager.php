@@ -4,7 +4,7 @@ namespace App\Model;
 
 class ErrorReportManager extends AbstractManager
 {
-    public CONST TABLE = 'report';
+    public const TABLE = 'report';
     /**
      * Add a comment associated to a report
      */
