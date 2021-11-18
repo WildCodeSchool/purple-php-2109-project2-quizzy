@@ -32,7 +32,7 @@ class ManagementController extends AbstractController
             }
             foreach ($answerArray as $answer) { // This checks if answer forms are filled properly.
                 if (empty($answer["answer"])) {
-                    $errors[] = "Tout les champs réponses doivent être remplis.";
+                    $errors[] = "Tous les champs réponses doivent être remplis.";
                 }
                 if ($answer["isCorrect"]) { // This checks if at least one answer is correct.
                     $numberCorrectAnswers++ ;
@@ -40,8 +40,6 @@ class ManagementController extends AbstractController
             }
 
             $errors = $this->verifyNumberOfRightAnswer($numberCorrectAnswers, $numberOfAnswers, $errors);
-
-            $timeLimit = $this->addTimeLimit();
 
             if (empty($errors)) {
                 $questionManager = new QuestionManager();
@@ -78,14 +76,5 @@ class ManagementController extends AbstractController
             $errors[] = "Vous ne pouvez pas envoyer moins de 2 réponses.";
         }
         return $errors;
-    }
-
-    public function addTimeLimit()
-    {
-        if (isset($_POST["time-limit"]) || gettype($_POST["time-limit"] != "integer" || $_POST["time-limit"] < 0)) {
-            return 45;
-        } else {
-            return $_POST["time-limit"];
-        }
     }
 }
