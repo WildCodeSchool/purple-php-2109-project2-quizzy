@@ -49,7 +49,7 @@ class ManagementManager extends AbstractManager
         }
 
         $errors = $this->checkNumberOfErrors($numberCorrectAnswers, $numberOfAnswers, $errors);
-
+        var_dump($errors);
         return $errors;
     }
 
@@ -66,5 +66,7 @@ class ManagementManager extends AbstractManager
         } elseif ($numberOfAnswers < 2) {
             $errors[] = "Vous ne pouvez pas envoyer moins de 2 réponses.";
         }
+
+        return $errors;
     }
 }
