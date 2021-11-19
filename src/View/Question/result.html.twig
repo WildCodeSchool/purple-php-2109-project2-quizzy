@@ -14,7 +14,7 @@
             <div class="question-home">
                 {% for answer in answers %}
                     <div class="input-group">
-                        <input type="checkbox" id="{{ answer.id }}" name="{{ answer.title }}" disabled class="{{ (answer.isCorrect) ? 'checked' : '' }}">
+                        <input type="checkbox" id="{{ answer.id }}" name="{{ answer.title }}" disabled class="{{ (answer.isCorrect) ? 'good-answer' : 'wrong-answer' }}">
                         <label for="{{ answer.id }}">{{ answer.title }}</label>
                     </div>
                 {% endfor %}
