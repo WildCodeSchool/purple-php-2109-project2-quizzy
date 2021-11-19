@@ -35,6 +35,7 @@
     position: relative;
     width: 80%;
     border-radius: 10px;
+    height: fit-content;
 }
 .input-group label {
     padding: 12px 30px 12px 20px;
