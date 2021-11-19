@@ -1,0 +1,12 @@
+{% extends 'layout.html.twig' %}
+{% block stylesheet %}
+<link rel="stylesheet" href="/assets/css/success.css">
+{% endblock %}
+{% block content %}
+    <h1 class="title-success">Bravo, vous avez répondu correctement à {{ score }} {% if score <= 1 %} question {% else %} questions {% endif %} !</h1>
+    <a href="/" class="try-again-button">On recommence ?</a>
+{% endblock %}
+{% block javascript %}
+    <script src="/assets/js/confetti.js"></script>
+    <script src="/assets/js/confettiFireworks.js"></script>
+{% endblock %}

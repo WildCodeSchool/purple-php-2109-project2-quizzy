@@ -105,7 +105,7 @@ INSERT INTO `answer` (`id`, `title`, `is_correct`, `id_question`) VALUES
 (61, 'Vente d\'alcool illégale', 0, 16),
 (62, 'Corruption de politique', 0, 16),
 (63, 'Faux permis de construire', 0, 16),
-(64, 'Fraude fiscal', 1, 16),
+(64, 'Fraude fiscale', 1, 16),
 (65, 'Arthur', 0, 17),
 (66, 'Alain Chabat', 0, 17),
 (67, 'Bruno Solo', 0, 17),
@@ -268,7 +268,7 @@ INSERT INTO `question` (`id`, `title`, `timelimit`, `explanation`, `is_admitted`
 (7, 'Comment s\'appelle l\'ami de Oui Oui ?', 60, NULL, 1, 1, NULL),
 (8, 'Quel pays traverse le Danube ?', 60, NULL, 1, 1, NULL),
 (9, 'En quelle année a été diffusé le premier épisode des Chiffres et des Lettres ?', 60, NULL, 1, 1, NULL),
-(10, 'Comment s\'appelle l\'épée d\'Arya Stark dans Game of Thrones', 60, NULL, 1, 1, NULL),
+(10, 'Comment s\'appelle l\'épée d\'Arya Stark dans Game of Thrones ?', 60, NULL, 1, 1, NULL),
 (11, 'Quelle fable a été écrite par Jean de la Fontaine ?', 60, NULL, 1, 1, NULL),
 (12, 'Qui n\'a pas chanté \"Comme d\'habitude\" ?', 60, NULL, 1, 1, NULL),
 (13, 'Où vit Sacha de la franchise Pokémon ?', 60, NULL, 1, 1, NULL),
@@ -279,7 +279,7 @@ INSERT INTO `question` (`id`, `title`, `timelimit`, `explanation`, `is_admitted`
 (18, 'Dans quelle franchise existent les moldus ?', 60, NULL, 1, 1, NULL),
 (19, 'Dans quelle franchise existent les hobbits ?', 60, NULL, 1, 1, NULL),
 (20, 'Dans quelle franchise existent les wookiees ?', 60, NULL, 1, 1, NULL),
-(21, 'Dans quelle franchise un groupe a pour symbole un smiley ensanglanté.', 60, NULL, 1, 1, NULL),
+(21, 'Dans quelle franchise un groupe a pour symbole un smiley ensanglanté ?', 60, NULL, 1, 1, NULL),
 (22, 'Qui est la femme d\'Ulysse, connue pour avoir fait semblant de coudre une toison ?', 60, NULL, 1, 1, NULL),
 (23, 'Quel est le record du monde pour battre le jeu Super Mario Bros ?', 60, NULL, 1, 1, NULL),
 (24, 'Quel est le nom de la \"suite\" du jeu d\'Undertale crée par Toby Fox ?', 60, NULL, 1, 1, NULL),
@@ -329,7 +329,7 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` text NOT NULL,
-  `password` text,
+  `password` VARCHAR(255),
   `is_admin` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
@@ -339,7 +339,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `is_admin`) VALUES
-(1, 'Admin', '6F87e59csWZdS2sN', 1);
+(1, 'Admin', '$2y$10$woU.SkWoX0S7pcRBhQ974O587ctF3I/BhhQ45O7aBL5h9xMZWLzQ6', 1);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

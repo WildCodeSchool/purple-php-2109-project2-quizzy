@@ -1,0 +1,43 @@
+{% extends 'layout.html.twig' %}
+{% block stylesheet %}
+    <link rel="stylesheet" href="/assets/css/formDisplayQuestion.css">
+    <link rel="stylesheet" href="/assets/css/adminPanel.css">
+{% endblock %}
+{% block content %}
+<h1>Questions en attente</h1> 
+<section class="approval-section">
+{% for question in questions %}
+    <section class="question-section">     
+        <section class="img-and-question">
+            <div class="img-question"><img src="assets/images/questions/question-default.jpg" alt="question marks"></div>
+            <form class="question-home" method="post" action="/edit" enctype="multipart/form-data">
+                <input type="hidden" id="questionid" name="id" value="{{ question.id }}">
+                <input type="hidden" id="firstAnswerId" name="firstAnswerId" value="{{ question.answers.0.id }}">
+                <div class="edit-title">
+                    <h2>Titre :</h2>
+                    <textarea id="{{ question.id }}" name="title">{{ question.title }}</textarea>
+                </div><br>
+                <div class="edit-answers">
+                    <h2>Réponses :</h2>
+                
+                {% for answer in question.answers %}
+                    <div>
+                        <input type="text" id="answer-{{ answer.id }}" name="answer_{{ answer.id }}" value="{{ answer.title }}">
+                        <input type="checkbox" id="answer-{{answer.id}}-checkbox" name="answer_{{answer.id}}_correct" {{ (answer.is_correct) ? 'checked' : '' }}>
+                    </div>
+                {% endfor %}
+                </div>
+                <div class="edit-buttons">
+                    <input type="submit" value="Accepter la question" name="accept" id="accept">
+                    <input type="submit" value="Supprimer la question" name="delete" id="delete">
+                </div>
+                <div class="send-image">
+                    <label for="image-question">Envoyer une image pour la question :</label>    
+                    <input type="file" name="image-question" id="imageUpload" value="Envoyer image" />
+                </div>
+            </form>
+        </section>
+    </section>
+{% endfor %}
+</section>
+{% endblock %}

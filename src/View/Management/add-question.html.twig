@@ -1,0 +1,80 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="/assets/css/add-question.css">
+{% endblock %}
+
+{% block content %}
+    <h1 class="title-add-question">Ajoute ta question dans Quizzy</h1>
+    <form action="add-question" method="post">
+        <div id="question-block">
+            <label  for="question">Indique ta question :</label>
+            <textarea id="question" name="question" required>{{question}}</textarea>
+        </div>
+        <h2>Ajoute au moins <span>2 réponses</span> à ta question. <br>Et coche au moins <span>1 case</span> pour indiquer la ou les bonne(s) réponse(s).</h2>
+        <div id="answers-block">
+            {% for answer in answerArray %}
+                <div id="answer-{{loop.index}}-block" class="answer-block">
+                    <div class="label-input">
+                        <label  for="answer-{{loop.index}}">Réponse {{loop.index}} :&nbsp;</label>
+                        <input  type="text"  id="answer-{{loop.index}}"  name="answer_{{loop.index}}" value="{{answer.answer}}" placeholder="Entrez une réponse" required>
+                    </div>
+                    <input type="checkbox" id="answer-{{loop.index}}-checkbox" name="answer_{{loop.index}}_correct" {{ (answer.is_correct) ? 'checked' : '' }}>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="button">
+            <button id="add-answer">Ajouter une réponse</button>
+            <button id="remove-answer">Retirer une réponse</button>
+        </div>
+        
+        <ul>
+            {% for error in errors %}
+                <li class="error">{{ error }}</li>
+            {% endfor %}
+        </ul>
+        
+        <div id="send-answer">
+            <input type="submit" value="Envoyer la question">
+        </div>
+    </form>
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        /* Script that makes the button add another answer div when clicked.
+         The first time we click on it, we add the div 3, then 4 etc. */
+
+        let currentNumberOfAnswers = {{ answerArray|length }}; 
+        let buttonAddAnswer = document.querySelector("#add-answer");
+        let buttonRemoveAnswer = document.querySelector("#remove-answer");
+
+        buttonAddAnswer.addEventListener('click', function(e){
+            e.preventDefault;
+            if (currentNumberOfAnswers < 4) { // As of now we only allow 4 answers per question
+                currentNumberOfAnswers += 1;
+                let node = document.createElement("DIV");
+                node.classList.add("answer-block");
+                node.id = `answer-${currentNumberOfAnswers}-block`
+                
+                node.innerHTML = `<label  for="answer-${currentNumberOfAnswers}">Réponse ${currentNumberOfAnswers} :</label>
+                <input  type="text"  id="answer-${currentNumberOfAnswers}"  name="answer_${currentNumberOfAnswers}">
+                <input type="checkbox" id="answer-${currentNumberOfAnswers}-checkbox" name="answer_${currentNumberOfAnswers}_correct">`;
+
+                document.getElementById("answers-block").appendChild(node);
+            } else {
+                alert("Vous ne pouvez pas ajouter plus de 4 réponses.");
+            }
+        });
+
+        buttonRemoveAnswer.addEventListener('click', function(){
+            if (currentNumberOfAnswers > 2) { // The form needs at least two answers
+                let node = document.querySelector(`#answer-${currentNumberOfAnswers}-block`);
+                node.parentNode.removeChild(node);
+                currentNumberOfAnswers -= 1;
+            } else {
+                alert("Vous ne pouvez pas avoir moins de 2 réponses.");
+            }
+        });
+    </script>
+{% endblock %}
