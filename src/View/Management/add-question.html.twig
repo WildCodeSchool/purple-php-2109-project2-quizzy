@@ -19,7 +19,7 @@
                         <label  for="answer-{{loop.index}}">Réponse {{loop.index}} :&nbsp;</label>
                         <input  type="text"  id="answer-{{loop.index}}"  name="answer_{{loop.index}}" value="{{answer.answer}}" placeholder="Entrez une réponse" required>
                     </div>
-                    <input type="checkbox" id="answer-{{loop.index}}-checkbox" name="answer_{{loop.index}}_correct" {{ (answer.is_correct) ? 'checked' : '' }}>
+                    <input type="checkbox" id="answer-{{loop.index}}-checkbox" name="answer_{{loop.index}}_correct" {{ (answer.isCorrect) ? 'checked' : '' }}>
                 </div>
             {% endfor %}
         </div>

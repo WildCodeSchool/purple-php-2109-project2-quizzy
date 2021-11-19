@@ -77,7 +77,7 @@ label:after {
 .wrong-answer ~ label:after {
     width: 22px;
     height: 22px;
-    content: '\1F5D9';
+    content: '\2717';
     color: rgb(206, 31, 31); 
 }
 .wrong-answer ~ label {
